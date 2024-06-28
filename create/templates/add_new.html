@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/add_new.css' %}">
+{% endblock %}
+{% block navbar %}{% with selected='add_new' %}{{ block.super }}{% endwith %}{% endblock %}
+
+{% block content %}
+  <div class="postGroupingFlexBox">
+    <div class="postGroupingFlexBoxItems">
+      <div class="postTitle">
+          Story
+      </div>
+      <div class="postOverflow">
+        <div class="postBody">
+          <div class="postGroupingFlexBox">
+            <div class="postGroupingFlexBoxItems">
+              <a href="{% url "add_story" %}"><button class="fancyButton">Add Story</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="postGroupingFlexBoxItems">
+        <div class="postTitle">
+            Character
+        </div>
+        <div class="postOverflow">
+          <div class="postBody">
+            <div class="postGroupingFlexBox">
+              <div class="postGroupingFlexBoxItems">
+                <a href="{% url "add_character" %}"><button class="fancyButton">Add Character</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="postGroupingFlexBoxItems">
+          <div class="postTitle">
+              Content
+          </div>
+          <div class="postOverflow">
+            <div class="postBody">
+              <div class="postGroupingFlexBox">
+                <div class="postGroupingFlexBoxItems">
+                  <a href="{% url "add_content" %}"><button class="fancyButton">Add Content</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endblock content %}

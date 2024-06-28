@@ -1,0 +1,169 @@
+:root {
+    --mainBG: #080606;
+    --text: white;
+    --contentHeading: #171515;
+    --contentBG: #3b3737;
+    --contentBorderRad: 16px;
+    --lighterContentBG: #4b4545;
+    --navTextSize: 14px;
+    --navTextMargin: 0px 5px 0px;
+    --navTextPad: 12px 40px;
+  }
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--mainBG);
+    color: var(--text);
+    position: relative;
+    min-height: 100vh;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+}
+
+/* for turning all links to white text color */
+.linkTextColor:link, .linkTextColor:visited, .linkTextColor:hover, .linkTextColor:active {
+    color: var(--text);
+}
+
+a {
+    text-decoration: none;
+}
+
+/* The bar the navtabs sit in at the top of the screen */
+.navigationBar {
+    overflow: hidden;
+    background-color: var(--contentHeading);
+    color: var(--text);
+    padding: 4px;
+    margin: 0px;
+    height: 10%;
+    vertical-align: top;
+}
+
+.navigationGrouping {
+    margin: 0px 40px 0px;
+}
+
+/* Navigation tabs */
+.leftNavTabs a {
+    float: left;
+    display: block;
+    color: var(--text);
+    border-radius: var(--contentBorderRad);
+    font-weight: bold;
+    font-size: var(--navTextSize);
+    padding: var(--navTextPad);
+    text-align: center;
+    text-decoration: none;
+    margin: var(--navTextMargin);
+}
+
+.leftNavTabs a:hover {
+    background-color: var(--contentBG);
+    transition-duration: 0.5s;
+}
+
+.rightNavTabs a {
+    float: right;
+    display: block;
+    color: var(--text);
+    border-radius: var(--contentBorderRad);
+    font-weight: bold;
+    font-size: var(--navTextSize);
+    padding: var(--navTextPad);
+    text-align: center;
+    text-decoration: none;
+    margin: var(--navTextMargin);
+}
+
+.rightNavTabs a:hover {
+    background-color: var(--contentBG);
+    transition-duration: 0.5s;
+}
+
+/* This controls the highlighted navtab color that you're currently in */
+.navTabActive {
+    background-color: var(--contentBG);
+}
+
+.postTitle {
+    font-weight: bold;
+    border-radius: var(--contentBorderRad) var(--contentBorderRad) 0px 0px;
+    background-color: var(--contentHeading);
+    padding: 10px;
+    text-align: center;
+    font-size: 27px;
+}
+
+.postBody {
+    padding: 10px 4px 10px;
+}
+
+/* The outer flex box */
+.postGroupingFlexBox {
+    display: flex;
+    flex-flow: row wrap;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.postGroupingFlexBoxItems {
+    border-radius: var(--contentBorderRad);
+    background-color: var(--contentBG);
+    padding: 2px;
+    width:540px;
+    margin: 20px auto 20px;
+}
+
+/* This is the border bottoms to the table-row-divs on certain pages */
+.propertiesBorderBottom {
+    border-bottom: 3px solid var(--contentHeading);
+}
+
+/* Footer is broken, it will not stay at the bottom of the screen */
+/* .pushFooter {
+    display: flex;
+    min-height: auto;
+    flex-direction: column;
+    justify-content: space-between;
+} */
+
+
+@media only screen and (max-width: 1660px) {
+    .postGrouping {
+        width: 66%;
+    }
+
+    .postTitle {
+    padding: 26px 5px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    /* If browser window is less than
+        or equal to 768 pixels
+        Then changes these properties */
+
+    .navigationGrouping {
+        margin: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .leftNavTabs {
+        padding-right: 4px;
+    }
+
+    .rightNavTabs {
+        padding-left: 4px;
+    }
+
+    /* .characterPropertiesFlexBox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    } */
+}

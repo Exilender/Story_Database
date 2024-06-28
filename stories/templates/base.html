@@ -1,0 +1,65 @@
+{% comment %}
+Name:       Sara Wright
+Class:      CIS218 - Web Application Developement
+Date:       11/1/23
+{% endcomment %}
+{% load static %}
+<!doctype html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Story DB{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/Favicon.ico' %}" alt="Website Icon of an owl.">
+    {% comment %} <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extra_css %}
+    {% endblock %}
+    {% comment %} <script src="{% static 'js/base.js' %}"></script>
+    <script src="{% static 'js/droplist.js' %}"></script> {% endcomment %}
+  </head>
+  <body>
+    {% block navbar %}
+      {% include "partials/_navbar.html" %}
+    {% endblock %}
+        {% comment %} <div class="loginSignUpNavigationTabs">
+          <div class="user_droplist_button" onclick="dropList()">{{ user.username }}</div>
+            <div class="hidden userdroplist" id="userdroplist">
+              <div><a href="{% url 'logout' %}">Logout</a></div>
+              <div><a href="{% url 'password_change' %}">Change Password</a></div>
+              <div><a href="{% url 'account_settings' user.pk %}">Account Settings</a></div>
+              {% if user.is_staff %}
+                <div><a href="{% url 'admin:index' %}">Admin</a></div>
+              {% endif %}
+              <div><a href="{% url 'profile' user.pk %}">Profile</a></div>
+            </div>
+        </div>
+          {% else %}
+            <div class="mainNavigationTabs">
+              <img style="float:left;" src="{% static 'images/owly_icon.png' %}" width="44px">
+              <a href="{% url 'homepage' %}"> Popular</a>
+              <a href="{% url 'post_list' %}">Recent</a>
+
+            </div>
+              <div class="loginSignUpNavigationTabs">
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'sign_up' %}">Sign Up</a>
+              </div>
+            </div>
+          {% endif %} {% endcomment %}
+  </div>
+</div>
+
+
+{% block content %}
+{% endblock content %}
+  {% comment %} <div class="pushFooter"></div>
+    <footer>
+        <div style="text-align: right;">
+          Created by <a class="linkTextColor" href="{% url 'story' %}">Dane Wright</a>
+        </div>
+    </footer>
+  </div> {% endcomment %}
+</body>
+</html>

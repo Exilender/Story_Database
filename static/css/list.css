@@ -1,0 +1,36 @@
+/* CSS for story_list.html & character_list.html templates */
+
+/* Used on the Top 'Stats' box */
+.center {
+    text-align: center;
+    padding: 0px 6px 0px;
+}
+
+/* Forces the image in each flexbox to not get resized */
+.contentImage {
+    object-fit: cover;
+}
+
+/* Outer flex box grouping */
+.postPropertiesFlexBoxItems {
+    border: solid 4px var(--mainBG);
+    border-radius: 16px;
+    background-color: var(--lighterContentBG);
+    font-weight: bold;
+    width: 250px;
+    height: 250px;
+    margin: 2px;
+}
+
+/* For the items in the table-row-like div to the left of the item's image */
+.postPropertiesItemPadding {
+    padding: 8px;
+    display: flex;
+}
+
+/* This is used on character_list & details inside the left table-row-like div */
+.postPropertiesItemFloatRight {
+    font-weight: normal;
+    text-align: right;
+    flex-grow: 1;
+}

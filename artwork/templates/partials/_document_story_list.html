@@ -1,0 +1,34 @@
+<div class="rightDetailGrouping">
+  <div class="postTitle">
+    <div class="postTitleTextLarge">
+      Includes Stories:
+      {% if document.document_stories.all %}
+        <div class="rightPostTitleTextSmall">
+            <a class="linkTextColor" href="{% url "all_document_stories" document.pk %}">See All ({{ document.document_stories.all|length }})</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="postOverflow">
+    <div class="postBody">
+      {% if document.document_stories.all %}
+      <div class="postGroupingFlexBox">
+        {% for story in document.document_stories.all|slice:":5" %}
+          <div class="contentGroupingFlexBoxItems">
+            <div class="postTitle postTitleTextSmall">
+              <a class="linkTextColor" href="{% url "story_detail" story.pk %}">{{ story.title|slice:":12" }}</a>
+            </div>
+            <div class="center">
+              <a href="{% url "story_detail" story.pk %}">
+                <img class="contentImage" src="/media/{{ story.icon.image_link }}">
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+        <div class="">There are no Stories associated with this Document.</div>
+    {% endif %}
+    </div>
+  </div>
+</div>

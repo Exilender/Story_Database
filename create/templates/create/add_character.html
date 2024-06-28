@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/list.css' %}">
+  <link rel="stylesheet" href="{% static 'css/add_new.css' %}">
+  <link rel="stylesheet" href="{% static 'css/create.css' %}">
+{% endblock %}
+{% block navbar %}{% with selected='add_new' %}{{ block.super }}{% endwith %}{% endblock %}
+
+{% block content %}
+<div class="postGroupingFlexBox">
+  <div class="postGroupingFlexBoxItems">
+    <div class="postTitle">
+        Create a Character
+    </div>
+    <div class="postOverflow">
+      <div class="postBody">
+        <div class="postGroupingFlexBox">
+          <div class="postPropertiesFlexBoxItems">
+            <form action="" method="post">
+              {% csrf_token %}
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Character Icon: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.char_icon }}
+                </div>
+              </div>
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                First Name: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.first_name }}
+                </div>
+              </div>
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Last Name: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.last_name }}
+                </div>
+              </div>
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Age: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.age }}
+                </div>
+              </div>
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Gender: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.gender }}
+                </div>
+              </div>
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Species: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.species }}
+                </div>
+              </div>
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Species Descrption: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.species_desc }}
+                </div>
+              </div>
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Height FT: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.height_ft }}
+                </div>
+              </div>
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Height CM: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.height_cm }}
+                </div>
+              </div>
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Fighting Style: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.fighting_style }}
+                </div>
+              </div>
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Fighting Style Desc: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.fighting_style_desc }}
+                </div>
+              </div>
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Notes: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.char_notes }}
+                </div>
+              </div>
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Stories Character is apart of: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.character_stories }}
+                </div>
+              </div>
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Content Character is apart of: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.character_content }}
+                </div>
+              </div>
+              <div class="center">
+                <button type="submit" class="fancyButton">Create</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

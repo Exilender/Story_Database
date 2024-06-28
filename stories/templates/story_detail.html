@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/list.css' %}">
+  <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% endblock %}
+{% block navbar %}{% with selected='story' %}{{ block.super }}{% endwith %}{% endblock %}
+
+{% block content %}
+    <div class="leftDetailGrouping">
+      <div class="postTitle">
+        {{ story.title }}
+        <div class="rightPostTitleTextSmall">
+          <a class="linkTextColor" href="{% url "edit_story" story.pk %}">Edit</a>
+        </div>
+        <div class="postTitleTextSmall">
+          Created: {{ story.created }} | Updated: {{ story.updated }}
+        </div>
+      </div>
+        <div class="postOverflow">
+          <div class="postBody">
+            <div class="postGroupingFlexBox">
+              <div class="postGroupingFlexBoxItems">
+                <div class="propertiesBorderBottom postPropertiesItemPadding">
+                  {{ story.description }}
+                </div>
+              </div>
+              <a class="linkTextColor" href="{% url "artwork_detail" story.icon.pk %}">
+                <img class="postPropertiesFlexBoxItems" src="/media/{{ story.icon.image_link }}">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    {% include "partials/_story_content_list.html" %}
+    {% include "partials/_story_character_list.html" %}
+  </div>
+{% endblock content %}

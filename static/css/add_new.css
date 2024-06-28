@@ -1,0 +1,25 @@
+/* CSS for the add_new.html template  */
+
+.fancyButton {
+    background-color: var(--contentHeading);
+    border: solid 2px var(--mainBG);
+    color: var(--text);
+    border-radius: 16px;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 20px 40px 20px;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px;
+}
+
+.fancyButton:hover {
+    background-color: var(--lighterContentBG);
+    color: var(--text);
+    transition-duration: 0.5s;
+}
+
+/* For making the buttons center to the box */
+.postGroupingFlexBoxItems {
+    text-align: center;
+}

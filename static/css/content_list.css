@@ -1,0 +1,15 @@
+/* CSS modifications specifically for Artwork/Content list page */
+
+/* Adjust the width of each piece of Content */
+.postFlexBoxItemsContent {
+    width:340px;
+}
+
+/* Adjusts the image on each piece of content */
+.contentImage {
+    border: 6px solid var(--mainBG);
+    border-radius: 20px;
+    width: 300px;
+    height: 300px;
+    margin: 7px auto 0px;
+}

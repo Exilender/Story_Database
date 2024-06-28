@@ -1,0 +1,34 @@
+<div class="rightDetailGrouping">
+  <div class="postTitle">
+    <div class="postTitleTextLarge">
+      Includes Content:
+      {% if character.character_content.all %}
+        <div class="rightPostTitleTextSmall">
+          <a class="linkTextColor" href="{% url "all_character_content" character.pk %}">See All ({{character.character_content.all|length }})</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="postOverflow">
+    <div class="postBody">
+      {% if character.content_characters.all %}
+          <div class="postGroupingFlexBox">
+          {% for artwork in character.character_content.all|slice:":5" %}
+            <div class="contentGroupingFlexBoxItems">
+              <div class="postTitle postTitleTextSmall">
+                <a class="linkTextColor" href="{% url "artwork_detail" artwork.pk %}">{{ artwork.image_title|slice:":12" }}</a>
+              </div>
+              <div class="center">
+                <a href="{% url "artwork_detail" artwork.pk %}">
+                  <img class="contentImage" src="/media/{{ artwork.image_link }}">
+                </a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+          <div class="">There is no Content associated with this Character.</div>
+      {% endif %}
+    </div>
+  </div>
+</div>

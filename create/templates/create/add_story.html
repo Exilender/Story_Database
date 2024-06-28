@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/list.css' %}">
+  <link rel="stylesheet" href="{% static 'css/add_new.css' %}">
+  <link rel="stylesheet" href="{% static 'css/create.css' %}">
+{% endblock %}
+{% block navbar %}{% with selected='add_new' %}{{ block.super }}{% endwith %}{% endblock %}
+
+{% block content %}
+<div class="postGroupingFlexBox">
+  <div class="postGroupingFlexBoxItems">
+    <div class="postTitle">
+        Create a Story
+    </div>
+    <div class="postOverflow">
+      <div class="postBody">
+        <div class="postGroupingFlexBox">
+          <div class="postPropertiesFlexBoxItems">
+            <form action="" method="post">
+              {% csrf_token %}
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Display Image: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.icon }}
+                </div>
+              </div>
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Story Title: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.title }}
+                </div>
+              </div>
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Description: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.description }}
+                </div>
+              </div>
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Includes Characters: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.story_characters }}
+                </div>
+              </div>
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Includes Artwork: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ form.story_content }}
+                </div>
+              </div>
+              <div class="center">
+                <button type="submit" class="fancyButton">Create</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

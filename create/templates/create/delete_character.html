@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/add_new.css' %}">
+{% endblock %}
+{% block navbar %}{% with selected='add_new' %}{{ block.super }}{% endwith %}{% endblock %}
+
+{% block content %}
+  <div class="postGroupingFlexBox">
+    <div class="postGroupingFlexBoxItems">
+      <div class="postTitle">
+          Do you really want to delete {{ character.first_name }}?
+      </div>
+      <div class="postOverflow">
+        <div class="postBody">
+          <div class="postGroupingFlexBox">
+            <div class="postGroupingFlexBoxItems">
+              <form action="" method="post">
+                {% csrf_token %}
+              <button type="submit" class="fancyButton">Delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

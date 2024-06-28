@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/list.css' %}">
+{% endblock %}
+{% block navbar %}{% with selected='story' %}{{ block.super }}{% endwith %}{% endblock %}
+
+{% block content %}
+<div class="postGroupingFlexBox">
+  <div class="postGroupingFlexBoxItems">
+    <div class="postTitle">
+        <a class="linkTextColor" href="{% url "story_detail" story.pk %}">{{ story.title }}</a>
+    </div>
+    {% if story.story_characters.all %}
+    <div class="postBody">
+      <div class="center">
+        {{ story.title }} is associated with {{ story.story_characters.all|length }} Character(s).
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="postOverflow">
+    <div class="postBody">
+      <div class="postGroupingFlexBox">
+        {% for character in story.story_characters.all %}
+          <div class="postGroupingFlexBoxItems">
+            <div class="postTitle">
+              <a class="linkTextColor" href="{% url "character_detail" character.pk %}">
+                {{ character.first_name }}{% if character.last_name %} {{character.last_name}}{% endif %}
+              </a>
+            </div>
+            <div class="postOverflow">
+              <div class="postBody">
+                <div class="postGroupingFlexBox">
+                  <div class="postPropertiesFlexBoxItems">
+                    <div class="propertiesBorderBottom postPropertiesItemPadding">
+                      Age
+                      <div class="postPropertiesItemFloatRight">
+                        {% if character.age == 0 %}Immortal{% else %}{{character.age}}{% endif %}
+                      </div>
+                    </div>
+                    <div class="propertiesBorderBottom postPropertiesItemPadding">
+                      Gender
+                      <div class="postPropertiesItemFloatRight">
+                        {{ character.get_gender_display }}
+                      </div>
+                    </div>
+                    <div class="propertiesBorderBottom postPropertiesItemPadding">
+                      Species
+                      <div class="postPropertiesItemFloatRight">
+                        {{ character.get_species_display }}
+                      </div>
+                    </div>
+                    <div class="propertiesBorderBottom postPropertiesItemPadding">
+                      Height FT
+                      <div class="postPropertiesItemFloatRight">
+                        {{ character.height_ft }}
+                      </div>
+                    </div>
+                    <div class="propertiesBorderBottom postPropertiesItemPadding">
+                      Height CM
+                      <div class="postPropertiesItemFloatRight">
+                        {{ character.height_cm }}
+                      </div>
+                    </div>
+                    <div class="postPropertiesItemPadding">
+                      Fight Style
+                      <div class="postPropertiesItemFloatRight">
+                        {{ character.get_fighting_style_display }}
+                      </div>
+                    </div>
+                  </div>
+                  <a class="linkTextColor" href="{% url "character_detail" character.pk %}">
+                    <img class="postPropertiesFlexBoxItems contentImage" src="/media/{{ character.char_icon.image_link }}">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="postOverflow">
+    <div class="postBody">
+      There are no Stories associated with this Character
+    </div>
+  </div>
+</div>
+{% endif %}
+</div>
+{% endblock content %}

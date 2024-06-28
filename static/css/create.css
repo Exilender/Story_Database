@@ -1,0 +1,28 @@
+/* CSS for the create/edit forms */
+
+/* Makes contents of flex box center and grow box to fit */
+.postPropertiesFlexBoxItems {
+    width: auto;
+    height: auto;
+    margin: auto;
+    display: flex;
+}
+
+/* Removing property from add_new.css */
+.postGroupingFlexBoxItems {
+    text-align: unset;
+}
+
+/* Absolutely necessary for table-row-div to look good */
+.propertiesItemPadding {
+    padding: 8px;
+    display: flex;
+}
+
+/* For 'Delete' option text */
+.rightPostTitleTextSmall {
+    font-size: 14px;
+    float: right;
+    flex-grow: 1;
+    padding: 8px;
+}

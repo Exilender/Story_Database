@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/list.css' %}">
+{% endblock %}
+{% block navbar %}{% with selected='artwork' %}{{ block.super }}{% endwith %}{% endblock %}
+
+{% block content %}
+<div class="postGroupingFlexBox">
+  <div class="postGroupingFlexBoxItems">
+    <div class="postTitle">
+      <a class="linkTextColor" href="{% url "artwork_detail" artwork.pk %}">{{ artwork.title }}</a>
+    </div>
+  {% if artwork.content_stories.all %}
+    <div class="postBody">
+      <div class="center">
+        {{ artwork.title }} is associated with {{ artwork.content_stories.all|length }} Stories.
+      </div>
+    </div>
+  </div>
+</div>
+<div class="postOverflow">
+  <div class="postBody">
+    <div class="postGroupingFlexBox">
+      {% for story in artwork.content_stories.all|slice:":5" %}
+      <div class="postGroupingFlexBoxItems">
+        <div class="postTitle">
+            <a class="linkTextColor" href="{% url "story_detail" story.pk %}">{{ story.title }}</a>
+        </div>
+        <div class="postOverflow">
+          <div class="postBody">
+            <div class="postGroupingFlexBox">
+              <div class="postPropertiesFlexBoxItems">
+                <div class="propertiesBorderBottom postPropertiesItemPadding">
+                About:<br>
+                {{story.description|slice:":100"}}
+                </div>
+              </div>
+                <a class="linkTextColor" href="{% url "story_detail" story.pk %}">
+                  <img class="postPropertiesFlexBoxItems contentImage" src="/media/{{ story.icon.image_link }}">
+                </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% else %}
+  <div class="postOverflow">
+    <div class="postBody">
+      There are no Stories associated with this Artwork
+    </div>
+  </div>
+</div>
+{% endif %}
+</div>
+{% endblock content %}

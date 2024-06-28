@@ -1,0 +1,15 @@
+{% load static %}
+<div class="navigationBar">
+  <div class="navigationGrouping">
+    <div class="leftNavTabs">
+      {% comment %} {% if user.is_authenticated %} {% endcomment %}
+      {% comment %} <img style="float:left;" src="{% static 'images/owly_icon.png' %}" width="44px"> {% endcomment %}
+        <a class="{% if selected == 'story' %}navTabActive{% endif %}" href="{% url 'story' %}">Stories</a>
+        <a class="{% if selected == 'character' %}navTabActive{% endif %}" href="{% url 'character' %}">Characters</a>
+        <a class="{% if selected == 'artwork' %}navTabActive{% endif %}" href="{% url 'artwork' %}">Artworks</a>
+    </div>
+    <div class="rightNavTabs">
+      <a class="{% if selected == 'add_new' %}navTabActive{% endif %}" href="{% url 'add_new' %}">+ New</a>
+    </div>
+  </div>
+</div>
