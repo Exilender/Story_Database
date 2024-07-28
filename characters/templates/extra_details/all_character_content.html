@@ -12,28 +12,41 @@
     <div class="postTitle">
       <a class="linkTextColor" href="{% url "character_detail" character.pk %}">{{ character.first_name }}{% if character.last_name %} {{character.last_name}}{% endif %}</a>
     </div>
-    {% if character.character_content.all %}
     <div class="postBody">
       <div class="center">
-        {{ character.first_name }}{% if character.last_name %} {{character.last_name}}{% endif %} is associated with {{ character.character_content.all|length }} pieces of Content.
+        {% if content_list %}
+          {{ character.first_name }}{% if character.last_name %} {{character.last_name}}{% endif %} is associated with {{ content_list|length }} pieces of Content.
+        {% else %}
+          <div class="">There is no Content.</div>
+        {% endif %}
       </div>
     </div>
   </div>
 </div>
-<div class="postOverflow">
+
   <div class="postBody">
         <div class="postGroupingFlexBox">
-        {% for artwork in character.character_content.all %}
+        {% for content in content_list %}
         <div class="postGroupingFlexBoxItems postFlexBoxItemsContent">
           <div class="postTitle">
-            <a class="linkTextColor" href="{% url "artwork_detail" artwork.pk %}">{{ artwork.image_title }}</a>
+            {% if content.image_link %}
+              <a class="linkTextColor" href="{% url "artwork_detail" content.id %}">{{ content.title }}</a>
+            {% else %}
+              <a class="linkTextColor" href="{% url "document_detail" content.id %}">{{ content.title }}</a>
+            {% endif %}
           </div>
           <div class="postOverflow">
             <div class="postBody">
               <div class="center">
-                <a href="{% url "artwork_detail" artwork.pk %}">
-                  <img class="postPropertiesFlexBoxItems contentImage" src="/media/{{ artwork.image_link }}">
-                </a>
+                    {% if content.image_link %}
+                    <a href="{% url "artwork_detail" content.id %}">
+                    <img class="postPropertiesFlexBoxItems contentImage" src="/media/{{ content.image_link}}">
+                    </a>
+                    {% else %}
+                    <a href="{% url "document_detail" content.id %}">
+                    <img class="postPropertiesFlexBoxItems contentImage" src="#">
+                    </a>
+                    {% endif %}
               </div>
             </div>
           </div>
@@ -41,13 +54,6 @@
       {% endfor %}
       </div>
   </div>
-  {% else %}
-  <div class="postOverflow">
-    <div class="postBody">
-      There are no Stories associated with this Character
-    </div>
-  </div>
-</div>
-{% endif %}
+
 </div>
 {% endblock content %}

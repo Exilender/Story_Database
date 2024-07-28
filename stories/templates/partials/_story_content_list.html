@@ -2,26 +2,36 @@
   <div class="postTitle">
     <div class="postTitleTextLarge">
       Includes Content:
-      {% if story.story_content.all %}
+      {% if content_list %}
         <div class="rightPostTitleTextSmall">
-          <a class="linkTextColor" href="{% url "all_story_content" story.pk %}">See All ({{ story.story_content.all|length }})</a>
+          <a class="linkTextColor" href="{% url "all_story_content" story.pk %}">See All ({{ content_list|length }})</a>
         </div>
       {% endif %}
     </div>
   </div>
   <div class="postOverflow">
     <div class="postBody">
-      {% if story.story_content.all %}
+      {% if content_list %}
         <div class="postGroupingFlexBox">
-          {% for artwork in story.story_content.all|slice:":5" %}
+          {% for content in content_list|slice:":5" %}
             <div class="contentGroupingFlexBoxItems">
               <div class="postTitle postTitleTextSmall">
-                <a class="linkTextColor" href="{% url "artwork_detail" artwork.pk %}">{{ artwork.image_title|slice:":12" }}</a>
+                {% if content.image_link %}
+                  <a class="linkTextColor" href="{% url "artwork_detail" content.id %}">{{ content.title|slice:":12" }}</a>
+                {% else %}
+                  <a class="linkTextColor" href="{% url "document_detail" content.id %}">{{ content.title|slice:":12" }}</a>
+                {% endif %}
               </div>
               <div class="center">
-                <a href="{% url "artwork_detail" artwork.pk %}">
-                  <img class="contentImage" src="/media/{{ artwork.image_link}}">
+                {% if content.image_link %}
+                <a href="{% url "artwork_detail" content.id %}">
+                  <img class="contentImage" src="/media/{{ content.image_link }}">
                 </a>
+                {% else %}
+                <a href="{% url "document_detail" content.id %}">
+                  <img class="contentImage" src="#">
+                  </a>
+                {% endif %}
               </div>
             </div>
           {% endfor %}

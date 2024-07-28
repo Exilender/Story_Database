@@ -140,7 +140,7 @@ class AddArtwork(LoginRequiredMixin, CreateView):
     fields = [
         "image_link",
         "creator_name",
-        "image_title",
+        "title",
         "art_type",
         "finish_level",
         "image_description",
@@ -163,7 +163,7 @@ class EditArtwork(LoginRequiredMixin, UpdateView):
     fields = [
         "image_link",
         "creator_name",
-        "image_title",
+        "title",
         "art_type",
         "finish_level",
         "image_description",
@@ -194,7 +194,7 @@ class AddDocument(LoginRequiredMixin, CreateView):
     fields = [
         "document_link",
         "creator_name",
-        "document_title",
+        "title",
         "document_description",
         "document_characters",
         "document_stories",
@@ -215,7 +215,7 @@ class EditDocument(LoginRequiredMixin, UpdateView):
     fields = [
         "document_link",
         "creator_name",
-        "document_title",
+        "title",
         "document_description",
         "document_characters",
         "document_stories",

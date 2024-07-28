@@ -28,7 +28,11 @@
     {% for content in content_list %}
       <div class="postGroupingFlexBoxItems postFlexBoxItemsContent">
         <div class="postTitle">
-          <a class="linkTextColor" href="{% url "artwork_detail" content.id %}">{{ content.title }}</a>
+          {% if content.image_link %}
+            <a class="linkTextColor" href="{% url "artwork_detail" content.id %}">{{ content.title }}</a>
+          {% else %}
+            <a class="linkTextColor" href="{% url "document_detail" content.id %}">{{ content.title }}</a>
+          {% endif %}
         </div>
         <div class="postOverflow">
           <div class="postBody">
