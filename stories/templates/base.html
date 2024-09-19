@@ -1,8 +1,3 @@
-{% comment %}
-Name:       Sara Wright
-Class:      CIS218 - Web Application Developement
-Date:       11/1/23
-{% endcomment %}
 {% load static %}
 <!doctype html>
 <html lang="en-us">
@@ -23,31 +18,6 @@ Date:       11/1/23
     {% block navbar %}
       {% include "partials/_navbar.html" %}
     {% endblock %}
-        {% comment %} <div class="loginSignUpNavigationTabs">
-          <div class="user_droplist_button" onclick="dropList()">{{ user.username }}</div>
-            <div class="hidden userdroplist" id="userdroplist">
-              <div><a href="{% url 'logout' %}">Logout</a></div>
-              <div><a href="{% url 'password_change' %}">Change Password</a></div>
-              <div><a href="{% url 'account_settings' user.pk %}">Account Settings</a></div>
-              {% if user.is_staff %}
-                <div><a href="{% url 'admin:index' %}">Admin</a></div>
-              {% endif %}
-              <div><a href="{% url 'profile' user.pk %}">Profile</a></div>
-            </div>
-        </div>
-          {% else %}
-            <div class="mainNavigationTabs">
-              <img style="float:left;" src="{% static 'images/owly_icon.png' %}" width="44px">
-              <a href="{% url 'homepage' %}"> Popular</a>
-              <a href="{% url 'post_list' %}">Recent</a>
-
-            </div>
-              <div class="loginSignUpNavigationTabs">
-                <a href="{% url 'login' %}">Login</a>
-                <a href="{% url 'sign_up' %}">Sign Up</a>
-              </div>
-            </div>
-          {% endif %} {% endcomment %}
   </div>
 </div>
 
