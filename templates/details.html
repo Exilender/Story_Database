@@ -12,13 +12,129 @@
       <div class="postBody">
         <div class="postGroupingFlexBox">
           <div class="postGroupingFlexBoxItems">
+
+              {% if story %}
+              <div class="propertiesBorderBottom postPropertiesItemPadding">
+                {{ story.description }}
+              </div>
+              {% comment %} Don't remove with this extra </div> {% endcomment %}
+              </div>
+              <a class="linkTextColor" href="{% url "artwork_detail" story.icon.pk %}">
+                <img class="postPropertiesFlexBoxItems" src="/media/{{ story.icon.image_link }}">
+              </a>
+              {% endif %}
+
+              {% if character %}
+                <div class="propertiesBorderBottom postPropertiesItemPadding">
+                Age
+                <div class="postPropertiesItemFloatRight">
+                  {% if character.age == 0 %}Immortal{% else %}{{character.age}}{% endif %}
+                </div>
+                </div>
+                <div class="propertiesBorderBottom postPropertiesItemPadding">
+                  Gender
+                  <div class="postPropertiesItemFloatRight">
+                    {{ character.get_gender_display }}
+                  </div>
+                </div>
+                <div class="propertiesBorderBottom postPropertiesItemPadding">
+                  Species
+                  <div class="postPropertiesItemFloatRight">
+                    {{ character.get_species_display }}
+                  </div>
+                </div>
+                <div class="propertiesBorderBottom postPropertiesItemPadding">
+                  Species Desc
+                  <div class="postPropertiesItemFloatRight">
+                    {{ character.species_desc }}
+                  </div>
+                </div>
+                <div class="propertiesBorderBottom postPropertiesItemPadding">
+                  Height FT
+                  <div class="postPropertiesItemFloatRight">
+                    {{ character.height_ft }}
+                  </div>
+                </div>
+                <div class="propertiesBorderBottom postPropertiesItemPadding">
+                  Height CM
+                  <div class="postPropertiesItemFloatRight">
+                    {{ character.height_cm }}
+                  </div>
+                </div>
+                <div class="propertiesBorderBottom postPropertiesItemPadding">
+                  Fight Style
+                  <div class="postPropertiesItemFloatRight">
+                    {{ character.get_fighting_style_display }}
+                  </div>
+                </div>
+                <div class="propertiesBorderBottom postPropertiesItemPadding">
+                  Fight Style Desc
+                  <div class="postPropertiesItemFloatRight">
+                    {{ character.fighting_style_desc }}
+                  </div>
+                </div>
+                <div class="postPropertiesItemPadding">
+                  Char Notes
+                  <div class="postPropertiesItemFloatRight">
+                    {{ character.char_notes }}
+                  </div>
+                </div>
+              </div>
+              <a class="linkTextColor" href="{% url "character_detail" character.pk %}">
+                <img class="postPropertiesFlexBoxItems" src="/media/{{ character.char_icon.image_link }}">
+              </a>
+            {% endif %}
+
+            {% if artwork %}
             <div class="propertiesBorderBottom postPropertiesItemPadding">
-              {{ story.description }}
+              Creator:
+              <div class="postPropertiesItemFloatRight">
+                {{ artwork.creator_name }}
+              </div>
             </div>
-          </div>
-          <a class="linkTextColor" href="{% url "artwork_detail" story.icon.pk %}">
-            <img class="postPropertiesFlexBoxItems" src="/media/{{ story.icon.image_link }}">
-          </a>
+            <div class="propertiesBorderBottom postPropertiesItemPadding">
+              Art Type:
+              <div class="postPropertiesItemFloatRight">
+                {{ artwork.get_art_type_display }}
+              </div>
+            </div>
+            <div class="propertiesBorderBottom postPropertiesItemPadding">
+              Finish Level:
+              <div class="postPropertiesItemFloatRight">
+                {{ artwork.get_finish_level_display }}
+              </div>
+            </div>
+            <div class="postPropertiesItemPadding">
+              Description:
+              <div class="postPropertiesItemFloatRight">
+                {{ artwork.image_description }}
+              </div>
+            </div>
+            </div>
+            <a class="linkTextColor" href="{{artwork.upload.url}}" target="_blank">
+              <img class="postPropertiesFlexBoxItems" src="/media/{{ artwork.image_link }}">
+            </a>
+            </div>
+            {% endif %}
+
+            {% if document %}
+              <div class="propertiesBorderBottom propertiesItemPadding">
+                Creator: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ document.creator_name }}
+                </div>
+              </div>
+              <div class="propertiesItemPadding">
+                Description: &nbsp;
+                <div class="postPropertiesItemFloatRight">
+                  {{ document.document_description }}
+                </div>
+              </div>
+              </div>
+              <a class="linkTextColor" href="{{document.upload.url}}" target="_blank">
+                <img class="postPropertiesFlexBoxItems" src="#">
+              </a>
+            {% endif %}
         </div>
       </div>
     </div>

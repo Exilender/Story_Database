@@ -7,84 +7,8 @@
 {% block navbar %}{% with selected='character' %}{{ block.super }}{% endwith %}{% endblock %}
 
 {% block content %}
-  <div class="leftDetailGrouping">
-    <div class="postTitle">
-        {{ character.first_name }}{% if character.last_name %} {{character.last_name}}{% endif %}
-      <div class="rightPostTitleTextSmall">
-        <a class="linkTextColor" href="{% url "edit_character" character.pk %}">Edit</a>
-      </div>
-      <div class="postTitleTextSmall">
-        Created: {{ character.created }} | Updated: {{ character.updated }}
-      </div>
-    </div>
-      <div class="postOverflow">
-        <div class="postBody">
-          <div class="postGroupingFlexBox">
-            <div class="postGroupingFlexBoxItems">
-              <div class="propertiesBorderBottom postPropertiesItemPadding">
-                Age
-                <div class="postPropertiesItemFloatRight">
-                  {% if character.age == 0 %}Immortal{% else %}{{character.age}}{% endif %}
-                </div>
-              </div>
-              <div class="propertiesBorderBottom postPropertiesItemPadding">
-                Gender
-                <div class="postPropertiesItemFloatRight">
-                  {{ character.get_gender_display }}
-                </div>
-              </div>
-              <div class="propertiesBorderBottom postPropertiesItemPadding">
-                Species
-                <div class="postPropertiesItemFloatRight">
-                  {{ character.get_species_display }}
-                </div>
-              </div>
-              <div class="propertiesBorderBottom postPropertiesItemPadding">
-                Species Desc
-                <div class="postPropertiesItemFloatRight">
-                  {{ character.species_desc }}
-                </div>
-              </div>
-              <div class="propertiesBorderBottom postPropertiesItemPadding">
-                Height FT
-                <div class="postPropertiesItemFloatRight">
-                  {{ character.height_ft }}
-                </div>
-              </div>
-              <div class="propertiesBorderBottom postPropertiesItemPadding">
-                Height CM
-                <div class="postPropertiesItemFloatRight">
-                  {{ character.height_cm }}
-                </div>
-              </div>
-              <div class="propertiesBorderBottom postPropertiesItemPadding">
-                Fight Style
-                <div class="postPropertiesItemFloatRight">
-                  {{ character.get_fighting_style_display }}
-                </div>
-              </div>
-              <div class="propertiesBorderBottom postPropertiesItemPadding">
-                Fight Style Desc
-                <div class="postPropertiesItemFloatRight">
-                  {{ character.fighting_style_desc }}
-                </div>
-              </div>
-              <div class="postPropertiesItemPadding">
-                Char Notes
-                <div class="postPropertiesItemFloatRight">
-                  {{ character.char_notes }}
-                </div>
-              </div>
-            </div>
-            <a class="linkTextColor" href="{% url "character_detail" character.pk %}">
-              <img class="postPropertiesFlexBoxItems" src="/media/{{ character.char_icon.image_link }}">
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-    {% include "partials/_character_story_list.html" %}
-    {% include "partials/_character_content_list.html" %}
+  {% include "details.html" with item_title=character.first_name item_edit="edit_character" item_pk=character.pk item_created=character.created item_updated=character.updated%}
+  {% include "partials/_character_story_list.html" %}
+  {% include "partials/_character_content_list.html" %}
   </div>
 {% endblock content %}

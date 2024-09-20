@@ -7,7 +7,9 @@
 {% block navbar %}{% with selected='artwork' %}{{ block.super }}{% endwith %}{% endblock %}
 
 {% block content %}
-    <div class="leftDetailGrouping">
+
+{% include "details.html" with item_title=artwork.title item_edit="edit_artwork" item_pk=artwork.pk item_created=artwork.created item_updated=artwork.updated%}
+    {% comment %} <div class="leftDetailGrouping">
       <div class="postTitle">
           {{ artwork.title }}
           <div class="rightPostTitleTextSmall">
@@ -52,7 +54,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> {% endcomment %}
 
     {% include "partials/_artwork_story_list.html" %}
     {% include "partials/_artwork_character_list.html" %}

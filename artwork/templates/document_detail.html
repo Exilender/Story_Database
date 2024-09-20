@@ -7,7 +7,9 @@
 {% block navbar %}{% with selected='artwork' %}{{ block.super }}{% endwith %}{% endblock %}
 
 {% block content %}
-    <div class="leftDetailGrouping">
+
+    {% include "details.html" with item_title=document.title item_edit="edit_document" item_pk=document.pk item_created=document.created item_updated=document.updated%}
+    {% comment %} <div class="leftDetailGrouping">
       <div class="postTitle">
           {{ document.title }}
           <div class="rightPostTitleTextSmall">
@@ -21,26 +23,11 @@
         <div class="postBody">
           <div class="postGroupingFlexBox">
             <div class="postGroupingFlexBoxItems">
-              <div class="propertiesBorderBottom propertiesItemPadding">
-                Creator: &nbsp;
-                <div class="postPropertiesItemFloatRight">
-                  {{ document.creator_name }}
-                </div>
-              </div>
-              <div class="propertiesItemPadding">
-                Description: &nbsp;
-                <div class="postPropertiesItemFloatRight">
-                  {{ document.document_description }}
-                </div>
-              </div>
-            </div>
-            <a class="linkTextColor" href="{{document.upload.url}}" target="_blank">
-              <img class="postPropertiesFlexBoxItems" src="#">
-            </a>
+
           </div>
         </div>
       </div>
-    </div>
+    </div> {% endcomment %}
 
     {% include "partials/_document_character_list.html" %}
     {% include "partials/_document_story_list.html" %}
