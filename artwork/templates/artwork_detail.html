@@ -8,53 +8,7 @@
 
 {% block content %}
 
-{% include "details.html" with item_title=artwork.title item_edit="edit_artwork" item_pk=artwork.pk item_created=artwork.created item_updated=artwork.updated%}
-    {% comment %} <div class="leftDetailGrouping">
-      <div class="postTitle">
-          {{ artwork.title }}
-          <div class="rightPostTitleTextSmall">
-            <a class="linkTextColor" href="{% url "edit_artwork" artwork.pk %}">Edit</a>
-          </div>
-        <div class="postTitleTextSmall">
-          Created: {{ artwork.created }} | Updated: {{ artwork.updated }}
-        </div>
-      </div>
-        <div class="postOverflow">
-          <div class="postBody">
-            <div class="postGroupingFlexBox">
-              <div class="postGroupingFlexBoxItems">
-              <div class="propertiesBorderBottom postPropertiesItemPadding">
-                Creator:
-                <div class="postPropertiesItemFloatRight">
-                  {{ artwork.creator_name }}
-                </div>
-              </div>
-              <div class="propertiesBorderBottom postPropertiesItemPadding">
-                Art Type:
-                <div class="postPropertiesItemFloatRight">
-                  {{ artwork.get_art_type_display }}
-                </div>
-              </div>
-              <div class="propertiesBorderBottom postPropertiesItemPadding">
-                Finish Level:
-                <div class="postPropertiesItemFloatRight">
-                  {{ artwork.get_finish_level_display }}
-                </div>
-              </div>
-              <div class="postPropertiesItemPadding">
-                Description:
-                <div class="postPropertiesItemFloatRight">
-                  {{ artwork.image_description }}
-                </div>
-              </div>
-            </div>
-              <a class="linkTextColor" href="{{artwork.upload.url}}" target="_blank">
-                <img class="postPropertiesFlexBoxItems" src="/media/{{ artwork.image_link }}">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div> {% endcomment %}
+    {% include "details.html" with item_title=artwork.title item_edit="edit_artwork" item_pk=artwork.pk item_created=artwork.created item_updated=artwork.updated%}
 
     {% include "partials/_artwork_story_list.html" %}
     {% include "partials/_artwork_character_list.html" %}

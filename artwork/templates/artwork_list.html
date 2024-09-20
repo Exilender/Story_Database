@@ -7,50 +7,5 @@
 {% block navbar %}{% with selected='artwork' %}{{ block.super }}{% endwith %}{% endblock %}
 
 {% block content %}
-<div class="postGroupingFlexBox">
-  <div class="postGroupingFlexBoxItems">
-    <div class="postTitle">
-        Content Stats
-    </div>
-    <div class="postBody">
-      <div class="center">
-        {% if content_list %}
-            There are {{ content_list|length }} total pieces of Content.
-        {% else %}
-            <div class="">There is no Content.</div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</div>
-{% if content_list %}
-  <div class="postGroupingFlexBox">
-    {% for content in content_list %}
-      <div class="postGroupingFlexBoxItems postFlexBoxItemsContent">
-        <div class="postTitle">
-          {% if content.image_link %}
-            <a class="linkTextColor" href="{% url "artwork_detail" content.id %}">{{ content.title }}</a>
-          {% else %}
-            <a class="linkTextColor" href="{% url "document_detail" content.id %}">{{ content.title }}</a>
-          {% endif %}
-        </div>
-        <div class="postOverflow">
-          <div class="postBody">
-            <div class="center">
-                  {% if content.image_link %}
-                  <a href="{% url "artwork_detail" content.id %}">
-                  <img class="postPropertiesFlexBoxItems contentImage" src="/media/{{ content.image_link}}">
-                  </a>
-                  {% else %}
-                  <a href="{% url "document_detail" content.id %}">
-                  <img class="postPropertiesFlexBoxItems contentImage" src="#">
-                  </a>
-                  {% endif %}
-            </div>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
-{% endif %}
+{% include "lists.html" with item_title="Content Stats" %}
 {% endblock content %}

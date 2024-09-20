@@ -6,46 +6,5 @@
 {% block navbar %}{% with selected='story' %}{{ block.super }}{% endwith %}{% endblock %}
 
 {% block content %}
-  <div class="postGroupingFlexBox">
-    <div class="postGroupingFlexBoxItems">
-      <div class="postTitle">
-          Story Stats
-      </div>
-      <div class="postBody">
-        <div class="center">
-          {% if story_list %}
-            There are {{ story_list|length }} total Stories.
-          {% else %}
-            <div class="">There are no Stories.</div>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </div>
-{% if story_list %}
-  <div class="postGroupingFlexBox">
-    {% for story in story_list %}
-      <div class="postGroupingFlexBoxItems">
-        <div class="postTitle">
-            <a class="linkTextColor" href="{% url "story_detail" story.pk %}">{{ story.title }}</a>
-        </div>
-        <div class="postOverflow">
-          <div class="postBody">
-            <div class="postGroupingFlexBox">
-              <div class="postPropertiesFlexBoxItems">
-                <div class="propertiesBorderBottom postPropertiesItemPadding">
-                About:<br>
-                {{story.description|slice:":100"}}
-                </div>
-              </div>
-                <a class="linkTextColor" href="{% url "story_detail" story.pk %}">
-                  <img class="postPropertiesFlexBoxItems contentImage" src="/media/{{ story.icon.image_link }}">
-                </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
-{% endif %}
+{% include "lists.html" with item_title="Story Stats"%}
 {% endblock content %}

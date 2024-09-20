@@ -6,7 +6,7 @@
 {% block navbar %}{% with selected='character' %}{{ block.super }}{% endwith %}{% endblock %}
 
 {% block content %}
-<div class="postGroupingFlexBox">
+{% comment %} <div class="postGroupingFlexBox">
   <div class="postGroupingFlexBoxItems">
     <div class="postTitle">
       Character Stats
@@ -21,65 +21,6 @@
       </div>
     </div>
   </div>
-</div>
-{% if character_list %}
-  <div class="postGroupingFlexBox">
-    {% for character in character_list %}
-      <div class="postGroupingFlexBoxItems">
-        <div class="postTitle">
-          <a class="linkTextColor" href="{% url "character_detail" character.pk %}">
-            {{ character.first_name }}{% if character.last_name %} {{character.last_name}}{% endif %}
-          </a>
-        </div>
-        <div class="postOverflow">
-          <div class="postBody">
-            <div class="postGroupingFlexBox">
-              <div class="postPropertiesFlexBoxItems">
-                <div class="propertiesBorderBottom postPropertiesItemPadding">
-                  Age
-                  <div class="postPropertiesItemFloatRight">
-                    {% if character.age == 0 %}Immortal{% else %}{{character.age}}{% endif %}
-                  </div>
-                </div>
-                <div class="propertiesBorderBottom postPropertiesItemPadding">
-                  Gender
-                  <div class="postPropertiesItemFloatRight">
-                    {{ character.get_gender_display }}
-                  </div>
-                </div>
-                <div class="propertiesBorderBottom postPropertiesItemPadding">
-                  Species
-                  <div class="postPropertiesItemFloatRight">
-                    {{ character.get_species_display }}
-                  </div>
-                </div>
-                <div class="propertiesBorderBottom postPropertiesItemPadding">
-                  Height FT
-                  <div class="postPropertiesItemFloatRight">
-                    {{ character.height_ft }}
-                  </div>
-                </div>
-                <div class="propertiesBorderBottom postPropertiesItemPadding">
-                  Height CM
-                  <div class="postPropertiesItemFloatRight">
-                    {{ character.height_cm }}
-                  </div>
-                </div>
-                <div class="postPropertiesItemPadding">
-                  Fight Style
-                  <div class="postPropertiesItemFloatRight">
-                    {{ character.get_fighting_style_display }}
-                  </div>
-                </div>
-              </div>
-              <a class="linkTextColor" href="{% url "character_detail" character.pk %}">
-                <img class="postPropertiesFlexBoxItems contentImage" src="/media/{{ character.char_icon.image_link }}">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
-{% endif %}
+</div> {% endcomment %}
+{% include "lists.html" with item_title="Character Stats" %}
 {% endblock content %}

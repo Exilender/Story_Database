@@ -1,0 +1,156 @@
+<div class="postGroupingFlexBox">
+  <div class="postGroupingFlexBoxItems">
+    <div class="postTitle">
+        {{item_title}}
+    </div>
+    <div class="postBody">
+      <div class="center">
+
+        {% comment %} All needs to be separated like this due to reasons I need to investigate {% endcomment %}
+        {% if story_list %}
+          There are {{ story_list|length }} total Stories.
+        {% elif not story_list %}
+          {% comment %} do nothing, not sure why I had to put this here {% endcomment %}
+        {% else %}
+          <div class="">There are no Stories.</div>
+        {% endif %}
+
+        {% if character_list %}
+          There are {{ character_list|length }} total Characters.
+        {% elif not character_list %}
+          {% comment %} do nothing, not sure why I had to put this here {% endcomment %}
+        {% else %}
+          <div class="">There are no Characters.</div>
+        {% endif %}
+
+        {% if content_list %}
+          There are {{ content_list|length }} total pieces of Content.
+        {% elif not content_list %}
+          {% comment %} do nothing, not sure why I had to put this here {% endcomment %}
+        {% else %}
+          <div class="">There is no Content.</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if story_list %}
+<div class="postGroupingFlexBox">
+  {% for story in story_list %}
+    <div class="postGroupingFlexBoxItems">
+      <div class="postTitle">
+          <a class="linkTextColor" href="{% url "story_detail" story.pk %}">{{ story.title }}</a>
+      </div>
+      <div class="postOverflow">
+        <div class="postBody">
+          <div class="postGroupingFlexBox">
+            <div class="postPropertiesFlexBoxItems">
+              <div class="propertiesBorderBottom postPropertiesItemPadding">
+              {{story.description|slice:":100"}}
+              </div>
+            </div>
+              <a class="linkTextColor" href="{% url "story_detail" story.pk %}">
+                <img class="postPropertiesFlexBoxItems contentImage" src="/media/{{ story.icon.image_link }}">
+              </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{% if character_list %}
+  <div class="postGroupingFlexBox">
+    {% for character in character_list %}
+      <div class="postGroupingFlexBoxItems">
+        <div class="postTitle">
+          <a class="linkTextColor" href="{% url "character_detail" character.pk %}">
+            {{ character.first_name }}{% if character.last_name %} {{character.last_name}}{% endif %}
+          </a>
+        </div>
+        <div class="postOverflow">
+          <div class="postBody">
+            <div class="postGroupingFlexBox">
+              <div class="postPropertiesFlexBoxItems">
+                <div class="propertiesBorderBottom postPropertiesItemPadding">
+                  Age
+                  <div class="postPropertiesItemFloatRight">
+                    {% if character.age == 0 %}Immortal{% else %}{{character.age}}{% endif %}
+                  </div>
+                </div>
+                <div class="propertiesBorderBottom postPropertiesItemPadding">
+                  Gender
+                  <div class="postPropertiesItemFloatRight">
+                    {{ character.get_gender_display }}
+                  </div>
+                </div>
+                <div class="propertiesBorderBottom postPropertiesItemPadding">
+                  Species
+                  <div class="postPropertiesItemFloatRight">
+                    {{ character.get_species_display }}
+                  </div>
+                </div>
+                <div class="propertiesBorderBottom postPropertiesItemPadding">
+                  Height FT
+                  <div class="postPropertiesItemFloatRight">
+                    {{ character.height_ft }}
+                  </div>
+                </div>
+                <div class="propertiesBorderBottom postPropertiesItemPadding">
+                  Height CM
+                  <div class="postPropertiesItemFloatRight">
+                    {{ character.height_cm }}
+                  </div>
+                </div>
+                <div class="postPropertiesItemPadding">
+                  Fight Style
+                  <div class="postPropertiesItemFloatRight">
+                    {{ character.get_fighting_style_display }}
+                  </div>
+                </div>
+              </div>
+              <a class="linkTextColor" href="{% url "character_detail" character.pk %}">
+                <img class="postPropertiesFlexBoxItems contentImage" src="/media/{{ character.char_icon.image_link }}">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% if content_list %}
+  <div class="postGroupingFlexBox">
+    {% for content in content_list %}
+      <div class="postGroupingFlexBoxItems postFlexBoxItemsContent">
+        <div class="postTitle">
+          {% if content.image_link %}
+            <a class="linkTextColor" href="{% url "artwork_detail" content.id %}">{{ content.title }}</a>
+          {% else %}
+            <a class="linkTextColor" href="{% url "document_detail" content.id %}">{{ content.title }}</a>
+          {% endif %}
+        </div>
+        <div class="postOverflow">
+          <div class="postBody">
+            <div class="center">
+              {% if content.image_link %}
+              <a href="{% url "artwork_detail" content.id %}">
+              <img class="postPropertiesFlexBoxItems contentImage" src="/media/{{ content.image_link}}">
+              </a>
+              {% else %}
+              <a href="{% url "document_detail" content.id %}">
+              <img class="postPropertiesFlexBoxItems contentImage" src="#">
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+

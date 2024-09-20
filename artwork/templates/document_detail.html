@@ -7,30 +7,10 @@
 {% block navbar %}{% with selected='artwork' %}{{ block.super }}{% endwith %}{% endblock %}
 
 {% block content %}
+  {% include "details.html" with item_title=document.title item_edit="edit_document" item_pk=document.pk item_created=document.created item_updated=document.updated%}
 
-    {% include "details.html" with item_title=document.title item_edit="edit_document" item_pk=document.pk item_created=document.created item_updated=document.updated%}
-    {% comment %} <div class="leftDetailGrouping">
-      <div class="postTitle">
-          {{ document.title }}
-          <div class="rightPostTitleTextSmall">
-            <a class="linkTextColor" href="{% url "edit_document" document.pk %}">Edit</a>
-          </div>
-        <div class="postTitleTextSmall">
-          Created: {{ document.created }} | Updated: {{ document.updated }}
-        </div>
-      </div>
-      <div class="postOverflow">
-        <div class="postBody">
-          <div class="postGroupingFlexBox">
-            <div class="postGroupingFlexBoxItems">
-
-          </div>
-        </div>
-      </div>
-    </div> {% endcomment %}
-
-    {% include "partials/_document_character_list.html" %}
-    {% include "partials/_document_story_list.html" %}
+  {% include "partials/_document_character_list.html" %}
+  {% include "partials/_document_story_list.html" %}
 
   </div>
 {% endblock content %}
