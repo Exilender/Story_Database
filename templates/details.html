@@ -1,0 +1,25 @@
+<div class="leftDetailGrouping">
+  <div class="postTitle">
+    {{ item_title }}
+    <div class="rightPostTitleTextSmall">
+      <a class="linkTextColor" href="{% url item_edit item_pk %}">Edit</a>
+    </div>
+    <div class="postTitleTextSmall">
+      Created: {{ item_created }} | Updated: {{ item_updated }}
+    </div>
+  </div>
+    <div class="postOverflow">
+      <div class="postBody">
+        <div class="postGroupingFlexBox">
+          <div class="postGroupingFlexBoxItems">
+            <div class="propertiesBorderBottom postPropertiesItemPadding">
+              {{ story.description }}
+            </div>
+          </div>
+          <a class="linkTextColor" href="{% url "artwork_detail" story.icon.pk %}">
+            <img class="postPropertiesFlexBoxItems" src="/media/{{ story.icon.image_link }}">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
