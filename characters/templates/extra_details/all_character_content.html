@@ -7,53 +7,5 @@
 {% block navbar %}{% with selected='character' %}{{ block.super }}{% endwith %}{% endblock %}
 
 {% block content %}
-<div class="postGroupingFlexBox">
-  <div class="postGroupingFlexBoxItems">
-    <div class="postTitle">
-      <a class="linkTextColor" href="{% url "character_detail" character.pk %}">{{ character.first_name }}{% if character.last_name %} {{character.last_name}}{% endif %}</a>
-    </div>
-    <div class="postBody">
-      <div class="center">
-        {% if content_list %}
-          {{ character.first_name }}{% if character.last_name %} {{character.last_name}}{% endif %} is associated with {{ content_list|length }} pieces of Content.
-        {% else %}
-          <div class="">There is no Content.</div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</div>
-
-  <div class="postBody">
-        <div class="postGroupingFlexBox">
-        {% for content in content_list %}
-        <div class="postGroupingFlexBoxItems postFlexBoxItemsContent">
-          <div class="postTitle">
-            {% if content.image_link %}
-              <a class="linkTextColor" href="{% url "artwork_detail" content.id %}">{{ content.title }}</a>
-            {% else %}
-              <a class="linkTextColor" href="{% url "document_detail" content.id %}">{{ content.title }}</a>
-            {% endif %}
-          </div>
-          <div class="postOverflow">
-            <div class="postBody">
-              <div class="center">
-                    {% if content.image_link %}
-                    <a href="{% url "artwork_detail" content.id %}">
-                    <img class="postPropertiesFlexBoxItems contentImage" src="/media/{{ content.image_link}}">
-                    </a>
-                    {% else %}
-                    <a href="{% url "document_detail" content.id %}">
-                    <img class="postPropertiesFlexBoxItems contentImage" src="#">
-                    </a>
-                    {% endif %}
-              </div>
-            </div>
-          </div>
-        </div>
-      {% endfor %}
-      </div>
-  </div>
-
-</div>
+{% include "lists.html" with item_title=character.first_name|add:" "|add:character.last_name|add:" Character Content Stats" %}
 {% endblock content %}

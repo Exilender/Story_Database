@@ -6,54 +6,5 @@
 {% block navbar %}{% with selected='artwork' %}{{ block.super }}{% endwith %}{% endblock %}
 
 {% block content %}
-<div class="postGroupingFlexBox">
-  <div class="postGroupingFlexBoxItems">
-    <div class="postTitle">
-      <a class="linkTextColor" href="{% url "document_detail" document.pk %}">{{ document.title }}</a>
-    </div>
-  {% if document.document_stories.all %}
-    <div class="postBody">
-      <div class="center">
-        {{ document.title }} is associated with {{ document.document_stories.all|length }} Stories.
-      </div>
-    </div>
-  </div>
-</div>
-<div class="postOverflow">
-  <div class="postBody">
-    <div class="postGroupingFlexBox">
-      {% for story in document.document_stories.all|slice:":5" %}
-      <div class="postGroupingFlexBoxItems">
-        <div class="postTitle">
-            <a class="linkTextColor" href="{% url "story_detail" story.pk %}">{{ story.title }}</a>
-        </div>
-        <div class="postOverflow">
-          <div class="postBody">
-            <div class="postGroupingFlexBox">
-              <div class="postPropertiesFlexBoxItems">
-                <div class="propertiesBorderBottom postPropertiesItemPadding">
-                About:<br>
-                {{story.description|slice:":100"}}
-                </div>
-              </div>
-                <a class="linkTextColor" href="{% url "story_detail" story.pk %}">
-                  <img class="postPropertiesFlexBoxItems contentImage" src="/media/{{ story.icon.image_link }}">
-                </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-</div>
-{% else %}
-  <div class="postOverflow">
-    <div class="postBody">
-      There are no Stories associated with this Document.
-    </div>
-  </div>
-</div>
-{% endif %}
-</div>
+{% include "lists.html" with item_title=document.title|add:" Document Story Stats" story_list=document.document_stories.all%}
 {% endblock content %}

@@ -6,55 +6,5 @@
 {% block navbar %}{% with selected='character' %}{{ block.super }}{% endwith %}{% endblock %}
 
 {% block content %}
-  <div class="postGroupingFlexBox">
-    <div class="postGroupingFlexBoxItems">
-      <div class="postTitle">
-        <a class="linkTextColor" href="{% url "character_detail" character.pk %}">{{ character.first_name }}{% if character.last_name %} {{character.last_name}}{% endif %}</a>
-      </div>
-      {% if character.character_stories.all %}
-      <div class="postBody">
-        <div class="center">
-          {{ character.first_name }}{% if character.last_name %} {{character.last_name}}{% endif %} is associated with {{ character.character_stories.all|length }} Stories.
-        </div>
-      </div>
-    </div>
-  </div>
-    <div class="postOverflow">
-      <div class="postBody">
-        <div class="postGroupingFlexBox">
-          {% for story in character.character_stories.all %}
-            <div class="postGroupingFlexBoxItems">
-              <div class="postTitle">
-                  <a class="linkTextColor" href="{% url "story_detail" story.pk %}">{{ story.title }}</a>
-              </div>
-              <div class="postOverflow">
-                <div class="postBody">
-                  <div class="postGroupingFlexBox">
-                    <div class="postPropertiesFlexBoxItems">
-                      <div class="propertiesBorderBottom postPropertiesItemPadding">
-                      About:<br>
-                      {{story.description|slice:":100"}}
-                      </div>
-                    </div>
-                      <a class="linkTextColor" href="{% url "story_detail" story.pk %}">
-                        <img class="postPropertiesFlexBoxItems contentImage" src="/media/{{ story.icon.image_link }}">
-                      </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-
-{% else %}
-  <div class="postOverflow">
-    <div class="postBody">
-      There are no Stories associated with this Character
-    </div>
-  </div>
-</div>
-{% endif %}
-</div>
+{% include "lists.html" with item_title=character.first_name|add:" "|add:character.last_name|add:" Character Story Stats" story_list=character.character_stories.all%}
 {% endblock content %}
