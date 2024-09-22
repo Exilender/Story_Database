@@ -6,17 +6,15 @@
     <meta charset="utf-8">
     <title>{% block title %}Story DB{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/x-icon" href="{% static 'images/Favicon.ico' %}" alt="Website Icon of an owl.">
-    {% comment %} <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> {% endcomment %}
+    {% comment %} <link rel="icon" type="image/x-icon" href="{% static '#' %}" alt="#"> {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% block extra_css %}
     {% endblock %}
-    {% comment %} <script src="{% static 'js/base.js' %}"></script>
-    <script src="{% static 'js/droplist.js' %}"></script> {% endcomment %}
+
   </head>
   <body>
     {% block navbar %}
-      {% include "partials/_navbar.html" %}
+      {% include "_navbar.html" %}
     {% endblock %}
   </div>
 </div>
