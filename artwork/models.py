@@ -104,7 +104,7 @@ class Document(models.Model):
         """String method"""
         return self.title[:50]
 
-    # def get_absolute_url(self):
-    #     """Method for getting the absolute URL of image detail"""
-    #     character_reverse = reverse("artwork_detail", kwargs={"pk": self.pk})
-    #     return character_reverse
+    def get_absolute_url(self):
+        """Method for getting the absolute URL of image detail"""
+        document_reverse = reverse("document_detail", kwargs={"pk": self.pk})
+        return document_reverse

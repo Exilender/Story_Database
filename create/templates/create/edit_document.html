@@ -1,70 +1,53 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/list.css' %}">
-  <link rel="stylesheet" href="{% static 'css/add_new.css' %}">
-  <link rel="stylesheet" href="{% static 'css/create.css' %}">
-{% endblock %}
-{% block navbar %}{% with selected='add_new' %}{{ block.super }}{% endwith %}{% endblock %}
+{% extends 'base/create.html' %}
 
-{% block content %}
-<div class="postGroupingFlexBox">
-  <div class="postGroupingFlexBoxItems">
-    <div class="postTitle">
-        Edit [TEXT HERE]
-        <div class="rightPostTitleTextSmall">
-          <a class="linkTextColor" href="#">Delete</a>
-        </div>
-    </div>
-    <div class="postOverflow">
-      <div class="postBody">
-        <div class="postGroupingFlexBox">
-          <div class="postPropertiesFlexBoxItems">
-            <form action="" method="post" enctype="multipart/form-data">
-              {% csrf_token %}
-              <div class="propertiesBorderBottom propertiesItemPadding">
-                Document file: &nbsp;
-                <div class="postPropertiesItemFloatRight">
-                  {{ form.document_link }}
-                </div>
-              </div>
-              <div class="propertiesBorderBottom propertiesItemPadding">
-                Creator: &nbsp;
-                <div class="postPropertiesItemFloatRight">
-                  {{ form.creator_name }}
-                </div>
-              </div>
-              <div class="propertiesBorderBottom propertiesItemPadding">
-                Title: &nbsp;
-                <div class="postPropertiesItemFloatRight">
-                  {{ form.title }}
-                </div>
-              </div>
-              <div class="propertiesBorderBottom propertiesItemPadding">
-                Description: &nbsp;
-                <div class="postPropertiesItemFloatRight">
-                  {{ form.document_description }}
-                </div>
-              </div>
-              <div class="propertiesBorderBottom propertiesItemPadding">
-                Includes Characters: &nbsp;
-                <div class="postPropertiesItemFloatRight">
-                  {{ form.document_characters }}
-                </div>
-              </div>
-              <div class="propertiesBorderBottom propertiesItemPadding">
-                Includes Stories: &nbsp;
-                <div class="postPropertiesItemFloatRight">
-                  {{ form.document_stories }}
-                </div>
-              </div>
-              <div class="center">
-                <button type="submit" class="fancyButton">Create</button>
-              </div>
-            </div>
-          </div>
-        </div>
+{% block item_heading %}
+  Edit Document
+  <div class="rightPostTitleTextSmall">
+    <a class="linkTextColor" href="{% url "delete_document" document.pk %}">Delete</a>
+  </div>
+{% endblock item_heading %}
+
+{% block item_body %}
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="propertiesBorderBottom propertiesItemPadding">
+      Document file: &nbsp;
+      <div class="postPropertiesItemFloatRight">
+        {{ form.document_link }}
       </div>
     </div>
-  </div>
-{% endblock content %}
+    <div class="propertiesBorderBottom propertiesItemPadding">
+      Creator: &nbsp;
+      <div class="postPropertiesItemFloatRight">
+        {{ form.creator_name }}
+      </div>
+    </div>
+    <div class="propertiesBorderBottom propertiesItemPadding">
+      Title: &nbsp;
+      <div class="postPropertiesItemFloatRight">
+        {{ form.title }}
+      </div>
+    </div>
+    <div class="propertiesBorderBottom propertiesItemPadding">
+      Description: &nbsp;
+      <div class="postPropertiesItemFloatRight">
+        {{ form.document_description }}
+      </div>
+    </div>
+    <div class="propertiesBorderBottom propertiesItemPadding">
+      Includes Characters: &nbsp;
+      <div class="postPropertiesItemFloatRight">
+        {{ form.document_characters }}
+      </div>
+    </div>
+    <div class="propertiesBorderBottom propertiesItemPadding">
+      Includes Stories: &nbsp;
+      <div class="postPropertiesItemFloatRight">
+        {{ form.document_stories }}
+      </div>
+    </div>
+    <div class="center">
+      <button type="submit" class="fancyButton">Create</button>
+    </div>
+  </form>
+{% endblock item_body %}

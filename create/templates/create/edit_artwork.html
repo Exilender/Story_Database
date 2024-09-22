@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 {% load static %}
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/list.css' %}">
@@ -13,7 +13,7 @@
     <div class="postTitle">
         Edit {{ artwork.image_title }}
         <div class="rightPostTitleTextSmall">
-          <a class="linkTextColor" href="{% url "delete_content" artwork.pk %}">Delete</a>
+          <a class="linkTextColor" href="{% url "delete_artwork" artwork.pk %}">Delete</a>
         </div>
     </div>
     <div class="postOverflow">

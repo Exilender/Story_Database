@@ -1,0 +1,46 @@
+{% extends 'base/base.html'%}
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/list.css' %}">
+  <link rel="stylesheet" href="{% static 'css/add_new.css' %}">
+  <link rel="stylesheet" href="{% static 'css/create.css' %}">
+{% endblock %}
+{% block navbar %}{% with selected='add_new' %}{{ block.super }}{% endwith %}{% endblock %}
+{% comment %}
+
+
+{% extends 'base/create.html' %}
+
+{% block item_heading %}
+{% endblock item_heading %}
+
+{% block item_body %}
+{% endblock item_body %}
+
+
+{% endcomment %}
+
+{% block content %}
+<div class="postGroupingFlexBox">
+  <div class="postGroupingFlexBoxItems">
+    <div class="postTitle">
+      <div class="postTitleTextLarge">
+        {% block item_heading %}
+        {% endblock item_heading %}
+      </div>
+    </div>
+
+
+
+    <div class="postBody">
+      <div class="postGroupingFlexBox">
+        <div class="postPropertiesFlexBoxItems">
+          {% block item_body %}
+          {% endblock item_body %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock content %}
