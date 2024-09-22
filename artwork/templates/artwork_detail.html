@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 {% load static %}
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/list.css' %}">
@@ -8,7 +8,7 @@
 
 {% block content %}
 
-    {% include "details.html" with item_title=artwork.title item_edit="edit_artwork" item_pk=artwork.pk item_created=artwork.created item_updated=artwork.updated%}
+    {% include "base/details.html" with item_title=artwork.title item_edit="edit_artwork" item_pk=artwork.pk item_created=artwork.created item_updated=artwork.updated%}
 
     {% include "partials/_artwork_story_list.html" %}
     {% include "partials/_artwork_character_list.html" %}

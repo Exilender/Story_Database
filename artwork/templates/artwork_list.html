@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 {% load static %}
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/list.css' %}">
@@ -7,5 +7,5 @@
 {% block navbar %}{% with selected='artwork' %}{{ block.super }}{% endwith %}{% endblock %}
 
 {% block content %}
-{% include "lists.html" with item_title="Content Stats"%}
+{% include "base/lists.html" with item_title="Content Stats"%}
 {% endblock content %}

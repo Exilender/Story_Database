@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 {% load static %}
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/list.css' %}">
@@ -7,7 +7,7 @@
 {% block navbar %}{% with selected='story' %}{{ block.super }}{% endwith %}{% endblock %}
 
 {% block content %}
-    {% include "details.html" with item_title=story.title item_edit="edit_story" item_pk=story.pk item_created=story.created item_updated=story.updated%}
+    {% include "base/details.html" with item_title=story.title item_edit="edit_story" item_pk=story.pk item_created=story.created item_updated=story.updated%}
 
     {% include "partials/_story_content_list.html" %}
     {% include "partials/_story_character_list.html" %}

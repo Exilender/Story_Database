@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 {% load static %}
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/list.css' %}">
@@ -6,21 +6,5 @@
 {% block navbar %}{% with selected='character' %}{{ block.super }}{% endwith %}{% endblock %}
 
 {% block content %}
-{% comment %} <div class="postGroupingFlexBox">
-  <div class="postGroupingFlexBoxItems">
-    <div class="postTitle">
-      Character Stats
-    </div>
-    <div class="postBody">
-      <div class="center">
-        {% if character_list %}
-          There are {{ character_list|length }} total Characters.
-        {% else %}
-          <div class="">There are no Characters.</div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</div> {% endcomment %}
-{% include "lists.html" with item_title="Character Stats" %}
+{% include "base/lists.html" with item_title="Character Stats" %}
 {% endblock content %}
