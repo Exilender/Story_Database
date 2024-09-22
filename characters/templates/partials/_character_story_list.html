@@ -1,34 +1,31 @@
-<div class="rightDetailGrouping">
-  <div class="postTitle">
-    <div class="postTitleTextLarge">
-      Includes Stories:
-      {% if character.character_stories.all %}
-        <div class="rightPostTitleTextSmall">
-          <a class="linkTextColor" href="{% url "all_character_stories" character.pk %}">See All ({{character.character_stories.all|length }})</a>
-        </div>
-      {% endif %}
+{% extends 'partials.html' %}
+
+{% block item_heading %}
+  Story List
+  {% if character.character_stories.all %}
+    <div class="rightPostTitleTextSmall">
+      <a class="linkTextColor" href="{% url "all_character_stories" character.pk %}">See All ({{character.character_stories.all|length }})</a>
     </div>
-  </div>
-  <div class="postOverflow">
-    <div class="postBody">
-      {% if character.character_stories.all %}
-          <div class="postGroupingFlexBox">
-          {% for story in character.character_stories.all|slice:":5" %}
-            <div class="contentGroupingFlexBoxItems">
-              <div class="postTitle postTitleTextSmall">
-                <a class="linkTextColor" href="{% url "story_detail" story.pk %}">{{ story.title|slice:":12" }}</a>
-              </div>
-              <div class="center">
-                <a href="{% url "story_detail" story.pk %}">
-                  <img class="contentImage" src="/media/{{ story.icon.image_link }}">
-                </a>
-              </div>
-            </div>
-          {% endfor %}
+  {% endif %}
+{% endblock item_heading %}
+
+{% block item_body %}
+  {% if character.character_stories.all %}
+    <div class="postGroupingFlexBox">
+      {% for story in character.character_stories.all|slice:":5" %}
+        <div class="contentGroupingFlexBoxItems">
+          <div class="postTitle postTitleTextSmall">
+            <a class="linkTextColor" href="{% url "story_detail" story.pk %}">{{ story.title|slice:":12" }}</a>
+          </div>
+          <div class="center">
+            <a href="{% url "story_detail" story.pk %}">
+              <img class="contentImage" src="/media/{{ story.icon.image_link }}">
+            </a>
+          </div>
         </div>
-      {% else %}
-          <div class="">There are no Stories associated with this Character</div>
-      {% endif %}
+      {% endfor %}
     </div>
-  </div>
-</div>
+  {% else %}
+  <div class="">There are no Stories associated with this Character</div>
+  {% endif %}
+{% endblock item_body %}

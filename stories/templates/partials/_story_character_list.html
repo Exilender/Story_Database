@@ -1,35 +1,31 @@
-<div class="rightDetailGrouping">
-  <div class="postTitle">
-    <div class="postTitleTextLarge">
-      Includes Characters:
-      {% if story.story_characters.all %}
-        <div class="rightPostTitleTextSmall">
-          <a class="linkTextColor" href="{% url "all_story_characters" story.pk %}">See All ({{ story.story_characters.all|length }})</a>
-        </div>
-      {% endif %}
-    </div>
+{% extends 'partials.html' %}
 
-  </div>
-  <div class="postOverflow">
-    <div class="postBody">
-      {% if story.story_characters.all %}
-          <div class="postGroupingFlexBox">
-          {% for character in story.story_characters.all|slice:":5" %}
-            <div class="contentGroupingFlexBoxItems">
-              <div class="postTitle postTitleTextSmall">
-                <a class="linkTextColor" href="{% url "character_detail" character.pk %}">{{ character.first_name|slice:":12" }}</a>
-              </div>
-              <div class="center">
-                <a href="{% url "character_detail" character.pk %}">
-                  <img class="contentImage" src="/media/{{ character.char_icon.image_link }}">
-                </a>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-      {% else %}
-          <div class="">There are no Characters associated with this Story</div>
-      {% endif %}
+{% block item_heading %}
+  Character List
+  {% if story.story_characters.all %}
+    <div class="rightPostTitleTextSmall">
+      <a class="linkTextColor" href="{% url "all_story_characters" story.pk %}">See All ({{ story.story_characters.all|length }})</a>
     </div>
-  </div>
-</div>
+  {% endif %}
+{% endblock item_heading %}
+
+{% block item_body %}
+  {% if story.story_characters.all %}
+    <div class="postGroupingFlexBox">
+      {% for character in story.story_characters.all|slice:":5" %}
+        <div class="contentGroupingFlexBoxItems">
+          <div class="postTitle postTitleTextSmall">
+            <a class="linkTextColor" href="{% url "character_detail" character.pk %}">{{ character.first_name|slice:":12" }}</a>
+          </div>
+          <div class="center">
+            <a href="{% url "character_detail" character.pk %}">
+              <img class="contentImage" src="/media/{{ character.char_icon.image_link }}">
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+  <div class="">There are no Characters associated with this Story</div>
+  {% endif %}
+{% endblock item_body %}

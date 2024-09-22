@@ -1,44 +1,45 @@
-<div class="rightDetailGrouping">
-  <div class="postTitle">
-    <div class="postTitleTextLarge">
-      Includes Content:
-      {% if content_list %}
-        <div class="rightPostTitleTextSmall">
-          <a class="linkTextColor" href="{% url "all_story_content" story.pk %}">See All ({{ content_list|length }})</a>
-        </div>
-      {% endif %}
+{% extends 'partials.html' %}
+
+{% comment %} It appears to be really difficult to segment out this template {% endcomment %}
+
+
+{% block item_heading %}
+  Content List
+  {% if content_list %}
+    <div class="rightPostTitleTextSmall">
+      <a class="linkTextColor" href="{% url "all_story_content" story.pk %}">See All ({{ content_list|length }})</a>
     </div>
-  </div>
-  <div class="postOverflow">
-    <div class="postBody">
-      {% if content_list %}
-        <div class="postGroupingFlexBox">
-          {% for content in content_list|slice:":5" %}
-            <div class="contentGroupingFlexBoxItems">
-              <div class="postTitle postTitleTextSmall">
-                {% if content.image_link %}
-                  <a class="linkTextColor" href="{% url "artwork_detail" content.id %}">{{ content.title|slice:":12" }}</a>
-                {% else %}
-                  <a class="linkTextColor" href="{% url "document_detail" content.id %}">{{ content.title|slice:":12" }}</a>
-                {% endif %}
-              </div>
-              <div class="center">
-                {% if content.image_link %}
-                <a href="{% url "artwork_detail" content.id %}">
-                  <img class="contentImage" src="/media/{{ content.image_link }}">
-                </a>
-                {% else %}
-                <a href="{% url "document_detail" content.id %}">
-                  <img class="contentImage" src="#">
-                  </a>
-                {% endif %}
-              </div>
+  {% endif %}
+{% endblock item_heading %}
+
+  {% block item_body %}
+    {% if content_list %}
+      <div class="postGroupingFlexBox">
+        {% for content in content_list|slice:":5" %}
+          <div class="contentGroupingFlexBoxItems">
+            <div class="postTitle postTitleTextSmall">
+              {% if content.image_link %}
+                <a class="linkTextColor" href="{% url "artwork_detail" content.id %}">{{ content.title|slice:":12" }}</a>
+              {% else %}
+                <a class="linkTextColor" href="{% url "document_detail" content.id %}">{{ content.title|slice:":12" }}</a>
+              {% endif %}
             </div>
-          {% endfor %}
-        </div>
-      {% else %}
-          <div class="">There is no Content associated with this Story</div>
-      {% endif %}
-    </div>
-  </div>
-</div>
+            <div class="center">
+              {% if content.image_link %}
+              <a href="{% url "artwork_detail" content.id %}">
+                <img class="contentImage" src="/media/{{ content.image_link }}">
+              </a>
+              {% else %}
+              <a href="{% url "document_detail" content.id %}">
+                <img class="contentImage" src="#">
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="">There is no Content associated with this Story</div>
+    {% endif %}
+{% endblock item_body %}
+

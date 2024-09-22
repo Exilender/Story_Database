@@ -1,0 +1,32 @@
+{% comment %}
+Block stucture:
+
+
+{% extends 'partials.html' %}
+
+{% block item_heading %}
+{% endblock item_heading %}
+
+{% block item_body %}
+{% endblock item_body %}
+
+
+{% endcomment %}
+
+
+<div class="rightDetailGrouping">
+  <div class="postTitle">
+    <div class="postTitleTextLarge">
+      {% block item_heading %}
+      {% endblock item_heading %}
+    </div>
+  </div>
+
+  <div class="postOverflow">
+    <div class="postBody">
+      {% block item_body %}
+      {% endblock item_body %}
+    </div>
+  </div>
+</div>
+
