@@ -1,6 +1,8 @@
 from django.urls import reverse
 from django.db import models
 
+import math
+
 
 class Character(models.Model):
     """Defining the individual characters that may be linked to Stories or Content"""
@@ -38,7 +40,7 @@ class Character(models.Model):
     height_ft = models.CharField(max_length=5)
 
     # data should look like: 170
-    height_cm = models.IntegerField()
+    height_cm = models.IntegerField(editable=False)
 
     # Water, Earth, Fire, etc.. are types of magic
     fighting_style_choices = (
@@ -77,3 +79,21 @@ class Character(models.Model):
         """Method for getting the absolute URL of project detail"""
         character_reverse = reverse("character_detail", kwargs={"pk": self.pk})
         return character_reverse
+
+    def save(self, *args, **kwargs):
+        # Calculate the value before saving to the database
+        # expected data 5'7
+
+        delimeters = "'"
+
+        for delimeter in delimeters:
+            input = " ".join(self.height_ft.split(delimeter))
+
+        list_items = input.split()
+
+        # converting to cm
+        ft_to_cm = float(list_items[0]) * 30.48
+        in_to_cm = float(list_items[1]) * 2.54
+
+        self.height_cm = math.ceil(ft_to_cm + in_to_cm)
+        super(Character, self).save(*args, **kwargs)
