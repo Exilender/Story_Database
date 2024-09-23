@@ -1,47 +1,32 @@
-{% extends 'base/base.html' %}
-{% load static %}
-{% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/list.css' %}">
-  <link rel="stylesheet" href="{% static 'css/add_new.css' %}">
-  <link rel="stylesheet" href="{% static 'css/create.css' %}">
-{% endblock %}
-{% block navbar %}{% with selected='add_new' %}{{ block.super }}{% endwith %}{% endblock %}
+{% extends 'base/create.html' %}
 
-{% block content %}
-<div class="postGroupingFlexBox">
-  <div class="postGroupingFlexBoxItems">
-    <div class="postTitle">
-      Login
-    </div>
-    <div class="postOverflow">
-      <div class="postBody">
-        <div class="postGroupingFlexBox">
-          <div class="postPropertiesFlexBoxItems">
-            <form action="" method="post">
-              {% csrf_token %}
-              <div class="propertiesBorderBottom propertiesItemPadding">
-                Username: &nbsp;
-                <div class="postPropertiesItemFloatRight">
-                  {{form.username}}
-                </div>
-              </div>
-              <div class="propertiesBorderBottom propertiesItemPadding">
-                Password: &nbsp;
-                <div class="postPropertiesItemFloatRight">
-                  {{form.password}}
-                </div>
-              </div>
-              <div class="center">
-                <button type="submit" class="fancyButton">Login</button>
-              </div>
-            </div>
+{% block item_heading %}
+  Login
+{% endblock item_heading %}
+
+{% block item_body %}
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="propertiesBorderBottom propertiesItemPadding">
+          Username: &nbsp;
+          <div class="postPropertiesItemFloatRight">
+            {{form.username}}
+          </div>
+        </div>
+        <div class="propertiesBorderBottom propertiesItemPadding">
+          Password: &nbsp;
+          <div class="postPropertiesItemFloatRight">
+            {{form.password}}
           </div>
         </div>
         <div class="center">
-          <a class="linkTextColor" href="{% url 'password_reset' %}">Forgot your password?</a> &nbsp; | &nbsp;
-          <a class="linkTextColor" href="{% url 'sign_up' %}">Create Account?</a>
+          <button type="submit" class="fancyButton">Login</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
-{% endblock content %}
+  <div class="center">
+    <a class="linkTextColor" href="{% url 'password_reset' %}">Forgot your password?</a> &nbsp; | &nbsp;
+    <a class="linkTextColor" href="{% url 'sign_up' %}">Create Account?</a>
+  </div>
+{% endblock item_body %}
