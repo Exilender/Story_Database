@@ -1,6 +1,8 @@
 from django.urls import reverse
 from django.db import models
 
+from artwork.models import Artwork
+
 import math
 
 
@@ -8,10 +10,9 @@ class Character(models.Model):
     """Defining the individual characters that may be linked to Stories or Content"""
 
     char_icon = models.ForeignKey(
-        "artwork.Artwork",
-        on_delete=models.PROTECT,
-        related_name="char_icon",
+        "artwork.Artwork", on_delete=models.PROTECT, related_name="char_icon", blank=True, null=True
     )
+
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100, blank=True, null=True)
 
@@ -35,6 +36,14 @@ class Character(models.Model):
 
     # This is describing the appearance of the character
     species_desc = models.CharField(max_length=100)
+
+    body_type_choices = (
+        (1, "Animal"),
+        (2, "Anthro"),
+        (3, "Human"),
+    )
+
+    body_type = models.IntegerField(choices=body_type_choices, default=1)
 
     # data should look like: 5'7
     height_ft = models.CharField(max_length=5)
@@ -81,9 +90,9 @@ class Character(models.Model):
         return character_reverse
 
     def save(self, *args, **kwargs):
-        # Calculate the value before saving to the database
-        # expected data 5'7
+        """Calculate ft to cm to fill height_cm field before saving to the database"""
 
+        # expected data 5'7
         delimeters = "'"
 
         for delimeter in delimeters:
@@ -96,4 +105,19 @@ class Character(models.Model):
         in_to_cm = float(list_items[1]) * 2.54
 
         self.height_cm = math.ceil(ft_to_cm + in_to_cm)
+
+        # Set a default image based on body_type if no image is chosen
+        if not self.char_icon:
+            if self.body_type == 1:
+                self.char_icon = self.get_default_artwork("Icon Animal")
+            elif self.body_type == 2:
+                self.char_icon = self.get_default_artwork("Icon Anthro")
+            elif self.body_type == 3:
+                self.char_icon = self.get_default_artwork("Icon Human")
+
         super(Character, self).save(*args, **kwargs)
+
+    def get_default_artwork(self, artwork_type):
+        """Look up default Artwork by body_type"""
+
+        return Artwork.objects.filter(title=artwork_type).first()

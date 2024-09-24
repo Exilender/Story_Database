@@ -50,6 +50,12 @@
                   </div>
                 </div>
                 <div class="propertiesBorderBottom postPropertiesItemPadding">
+                  Body Type
+                  <div class="postPropertiesItemFloatRight">
+                    {{ character.get_body_type_display  }}
+                  </div>
+                </div>
+                <div class="propertiesBorderBottom postPropertiesItemPadding">
                   Height FT
                   <div class="postPropertiesItemFloatRight">
                     {{ character.height_ft }}
@@ -132,7 +138,7 @@
               </div>
               </div>
               <a class="linkTextColor" href="{{document.upload.url}}" target="_blank">
-                <img class="postPropertiesFlexBoxItems" src="#">
+                <img class="postPropertiesFlexBoxItems" src="/media/{{ document.document_image.image_link }}">
               </a>
             {% endif %}
         </div>

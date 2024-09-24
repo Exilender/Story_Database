@@ -11,7 +11,7 @@ class ContentList(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        artwork = Artwork.objects.all()
+        artwork = Artwork.objects.all().filter(is_default=False)
         documents = Document.objects.all()
 
         content_list = sorted(chain(artwork, documents), key=attrgetter("created"), reverse=True)

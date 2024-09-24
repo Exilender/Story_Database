@@ -24,7 +24,7 @@ Content List
             </a>
             {% else %}
             <a href="{% url "document_detail" content.id %}">
-              <img class="contentImage" src="#">
+              <img class="contentImage" src="/media/{{ content.document_image.image_link }}">
               </a>
             {% endif %}
           </div>

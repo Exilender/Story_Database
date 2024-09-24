@@ -142,7 +142,7 @@
               </a>
               {% else %}
               <a href="{% url "document_detail" content.id %}">
-              <img class="postPropertiesFlexBoxItems contentImage" src="#">
+              <img class="postPropertiesFlexBoxItems contentImage" src="/media/{{ content.document_image.image_link }}">
               </a>
               {% endif %}
             </div>

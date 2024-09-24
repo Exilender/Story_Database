@@ -47,6 +47,7 @@ class Artwork(models.Model):
     # For including different versions of the same image together
     # image_version = models.ManyToManyField("ImageVersions", blank=True, related_name="image_version")
 
+    is_default = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -65,12 +66,13 @@ class Document(models.Model):
 
     document_link = models.FileField(upload_to="documents/")
 
-    # document_image = models.ForeignKey(
-    #     "artwork.Artwork",
-    #     on_delete=models.PROTECT,
-    #     related_name="document_image",
-    #     blank=True,
-    # )
+    document_image = models.ForeignKey(
+        "artwork.Artwork",
+        on_delete=models.PROTECT,
+        related_name="document_image",
+        blank=True,
+        null=True,
+    )
 
     creator_name = models.CharField(
         max_length=100,
@@ -99,6 +101,17 @@ class Document(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        # Set a default image based on body_type if no image is provided
+        if not self.document_image:
+            self.document_image = self.get_default_artwork("Icon Document")
+
+        super(Document, self).save(*args, **kwargs)
+
+    def get_default_artwork(self, artwork_type):
+        # Look up default Artwork by type
+        return Artwork.objects.filter(title=artwork_type).first()
 
     def __str__(self):
         """String method"""

@@ -1,16 +1,14 @@
 from django.db import models
 from django.urls import reverse
 
+from artwork.models import Artwork
+
 
 class Story(models.Model):
     """Defining a Story's table"""
 
     # Icon is a piece of artwork already uploaded
-    icon = models.ForeignKey(
-        "artwork.Artwork",
-        on_delete=models.PROTECT,
-        related_name="icon",
-    )
+    icon = models.ForeignKey("artwork.Artwork", on_delete=models.PROTECT, related_name="icon", blank=True, null=True)
 
     title = models.CharField(max_length=100)
 
@@ -40,6 +38,17 @@ class Story(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        # Set a default image based on body_type if no image is provided
+        if not self.icon:
+            self.icon = self.get_default_artwork("Icon Story")
+
+        super(Story, self).save(*args, **kwargs)
+
+    def get_default_artwork(self, artwork_type):
+        # Look up default Artwork by type
+        return Artwork.objects.filter(title=artwork_type).first()
 
     def __str__(self):
         """String method"""
