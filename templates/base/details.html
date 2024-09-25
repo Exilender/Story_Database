@@ -14,133 +14,107 @@
           <div class="postGroupingFlexBoxItems">
 
               {% if story %}
-              <div class="propertiesBorderBottom postPropertiesItemPadding">
-                {{ story.description }}
-              </div>
-              {% comment %} Don't remove with this extra </div> {% endcomment %}
-              </div>
               <a class="linkTextColor" href="{% url "artwork_detail" story.icon.pk %}">
                 <img class="postPropertiesFlexBoxItems" src="/media/{{ story.icon.image_link }}">
               </a>
+              <div class="">
+                <table>
+                  <tr>
+                    <th>Description</th>
+                  </tr>
+                  <tr>
+                    <td>{{ story.description }}</td>
+                  </tr>
+                </table>
+              </div>
+
               {% endif %}
 
               {% if character %}
-                <div class="propertiesBorderBottom postPropertiesItemPadding">
-                Age
-                <div class="postPropertiesItemFloatRight">
-                  {% if character.age == 0 %}Immortal{% else %}{{character.age}}{% endif %}
-                </div>
-                </div>
-                <div class="propertiesBorderBottom postPropertiesItemPadding">
-                  Gender
-                  <div class="postPropertiesItemFloatRight">
-                    {{ character.get_gender_display }}
-                  </div>
-                </div>
-                <div class="propertiesBorderBottom postPropertiesItemPadding">
-                  Species
-                  <div class="postPropertiesItemFloatRight">
-                    {{ character.get_species_display }}
-                  </div>
-                </div>
-                <div class="propertiesBorderBottom postPropertiesItemPadding">
-                  Species Desc
-                  <div class="postPropertiesItemFloatRight">
-                    {{ character.species_desc }}
-                  </div>
-                </div>
-                <div class="propertiesBorderBottom postPropertiesItemPadding">
-                  Body Type
-                  <div class="postPropertiesItemFloatRight">
-                    {{ character.get_body_type_display  }}
-                  </div>
-                </div>
-                <div class="propertiesBorderBottom postPropertiesItemPadding">
-                  Height FT
-                  <div class="postPropertiesItemFloatRight">
-                    {{ character.height_ft }}
-                  </div>
-                </div>
-                <div class="propertiesBorderBottom postPropertiesItemPadding">
-                  Height CM
-                  <div class="postPropertiesItemFloatRight">
-                    {{ character.height_cm }}
-                  </div>
-                </div>
-                <div class="propertiesBorderBottom postPropertiesItemPadding">
-                  Fight Style
-                  <div class="postPropertiesItemFloatRight">
-                    {{ character.get_fighting_style_display }}
-                  </div>
-                </div>
-                <div class="propertiesBorderBottom postPropertiesItemPadding">
-                  Fight Style Desc
-                  <div class="postPropertiesItemFloatRight">
-                    {{ character.fighting_style_desc }}
-                  </div>
-                </div>
-                <div class="postPropertiesItemPadding">
-                  Char Notes
-                  <div class="postPropertiesItemFloatRight">
-                    {{ character.char_notes }}
-                  </div>
-                </div>
-              </div>
               <a class="linkTextColor" href="{% url "character_detail" character.pk %}">
                 <img class="postPropertiesFlexBoxItems" src="/media/{{ character.char_icon.image_link }}">
               </a>
+              <div class="">
+                <table>
+                  <tr>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Species</th>
+                    <th>Body Type</th>
+                    <th>Height</th>
+                    <th>Ability</th>
+                  </tr>
+                  <tr>
+                    <td>{% if character.age == 0 %}Immortal{% else %}{{character.age}}{% endif %}</td>
+                    <td>{{ character.get_gender_display }}</td>
+                    <td>{{ character.get_species_display }}</td>
+                    <td>{{ character.get_body_type_display }}</td>
+                    <td>{{ character.height_ft }}"</td>
+                    <td>{{ character.get_fighting_style_display }}</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"></td>
+                    <td colspan="2">{{ character.species_desc }}</td>
+                    <td>{{ character.height_cm }} cm</td>
+                    <td>{{ character.fighting_style_desc }}</td>
+                  </tr>
+                  <tr>
+                    <th colspan="6">Notes</th>
+                  </tr>
+                  <tr>
+                    <td colspan="6">{{ character.char_notes }}</td>
+                  </tr>
+                </table>
+              </div>
             {% endif %}
 
             {% if artwork %}
-            <div class="propertiesBorderBottom postPropertiesItemPadding">
-              Creator:
-              <div class="postPropertiesItemFloatRight">
-                {{ artwork.creator_name }}
-              </div>
-            </div>
-            <div class="propertiesBorderBottom postPropertiesItemPadding">
-              Art Type:
-              <div class="postPropertiesItemFloatRight">
-                {{ artwork.get_art_type_display }}
-              </div>
-            </div>
-            <div class="propertiesBorderBottom postPropertiesItemPadding">
-              Finish Level:
-              <div class="postPropertiesItemFloatRight">
-                {{ artwork.get_finish_level_display }}
-              </div>
-            </div>
-            <div class="postPropertiesItemPadding">
-              Description:
-              <div class="postPropertiesItemFloatRight">
-                {{ artwork.image_description }}
-              </div>
-            </div>
-            </div>
-            <a class="linkTextColor" href="{{artwork.upload.url}}" target="_blank">
+            <a class="linkTextColor" href="{{artwork.image_link.url}}" target="_blank">
               <img class="postPropertiesFlexBoxItems" src="/media/{{ artwork.image_link }}">
             </a>
+            <div class="">
+              <table>
+                <tr>
+                  <th>Creator</th>
+                  <th>Art Type</th>
+                  <th>Finish Level</th>
+                </tr>
+                <tr>
+                  <td>{{ artwork.creator_name }}</td>
+                  <td>{{ artwork.get_art_type_display }}</td>
+                  <td>{{ artwork.get_finish_level_display }}</td>
+                </tr>
+                <tr>
+                  <th colspan="3">Description</th>
+                </tr>
+                <tr>
+                  <td colspan="3">{{ artwork.image_description }}</td>
+                </tr>
+              </table>
             </div>
             {% endif %}
 
             {% if document %}
-              <div class="propertiesBorderBottom propertiesItemPadding">
-                Creator: &nbsp;
-                <div class="postPropertiesItemFloatRight">
-                  {{ document.creator_name }}
-                </div>
+              <div class="toolTip">
+                <a class="linkTextColor" href="/media/{{document.document_link}}">
+                  <div class="toolTipText">Click to download file</div>
+                  <img class="postPropertiesFlexBoxItems" src="/media/{{ document.document_image.image_link }}">
+                </a>
               </div>
-              <div class="propertiesItemPadding">
-                Description: &nbsp;
-                <div class="postPropertiesItemFloatRight">
-                  {{ document.document_description }}
-                </div>
-              </div>
-              </div>
-              <a class="linkTextColor" href="{{document.upload.url}}" target="_blank">
-                <img class="postPropertiesFlexBoxItems" src="/media/{{ document.document_image.image_link }}">
-              </a>
+              <table>
+                <tr>
+                  <th>Creator</th>
+                  <td>{{ document.creator_name }}</td>
+                </tr>
+                <tr>
+                  <th colspan="2">Description</th>
+                </tr>
+                <tr>
+                  <td colspan="2">{{ document.document_description }}</td>
+                </tr>
+              </table>
             {% endif %}
+          </div>
         </div>
       </div>
     </div>

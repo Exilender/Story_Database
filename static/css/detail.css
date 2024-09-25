@@ -43,17 +43,31 @@
     margin: 4px auto 4px;
 }
 
+
 /* Modifying to better display the left flexbox's content */
 .postGroupingFlexBoxItems {
+    /* border: solid 4px var(--contentHeading);
+    background-color: var(--lighterContentBG);
+    font-weight: bold;
+    padding: 2px; */
+    /* width:100%; */
+    /* min-height: 400px;
+    max-height: 720px; */
+    /* overflow-y: scroll;
+    margin: 20px auto 20px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.postBottomItem {
     border: solid 4px var(--contentHeading);
     background-color: var(--lighterContentBG);
     font-weight: bold;
     padding: 2px;
-    width:64%;
-    min-height: 400px;
-    max-height: 720px;
-    overflow-y: scroll;
-    margin: 20px auto 20px;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Modifies content of flex box tiny character/content images on right side */
@@ -68,7 +82,47 @@
 /* For the image in the left box */
 .postPropertiesFlexBoxItems {
     object-fit: cover;
-    margin: 20px auto 20px;
+    /* margin: auto; */
+    width: 100%;
+
+
+}
+
+table {
+    border-collapse: collapse;
+
+}
+th, td {
+
+    border: solid 2px var(--mainBG);
+    text-align: center;
+    padding: 4px 10px 3px;
+}
+
+th {
+    background-color: var(--contentHeading);
+}
+
+td {
+    background-color: var(--lighterContentBG);
+}
+
+.toolTip {
+    position: relative;
+  }
+
+.toolTip .toolTipText {
+    border: solid 2px var(--text);
+    border-radius: var(--contentBorderRad);
+    background-color: var(--lighterContentBG);
+    visibility: hidden;
+    text-align: center;
+    padding: 5px;
+    position: absolute;
+}
+
+.toolTip:hover .toolTipText {
+    visibility: visible;
 }
 
 /* .postPropertiesItemPadding {

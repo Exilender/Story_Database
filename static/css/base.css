@@ -104,15 +104,12 @@ a {
 .postGroupingFlexBox {
     display: flex;
     flex-flow: row wrap;
-    /* justify-content: center;
-    align-items: center; */
 }
 
 .postGroupingFlexBoxItems {
     border-radius: var(--contentBorderRad);
     background-color: var(--contentBG);
     padding: 2px;
-    width:540px;
     margin: 20px auto 20px;
 }
 

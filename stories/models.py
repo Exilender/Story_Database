@@ -8,7 +8,14 @@ class Story(models.Model):
     """Defining a Story's table"""
 
     # Icon is a piece of artwork already uploaded
-    icon = models.ForeignKey("artwork.Artwork", on_delete=models.PROTECT, related_name="icon", blank=True, null=True)
+    icon = models.ForeignKey(
+        "artwork.Artwork",
+        on_delete=models.PROTECT,
+        related_name="icon",
+        blank=True,
+        null=True,
+        limit_choices_to={"is_default": False},
+    )
 
     title = models.CharField(max_length=100)
 

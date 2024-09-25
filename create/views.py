@@ -214,7 +214,6 @@ class EditDocument(LoginRequiredMixin, UpdateView):
     template_name = "create/edit_document.html"
     fields = [
         "document_link",
-        "document_image",
         "creator_name",
         "title",
         "document_description",

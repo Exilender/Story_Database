@@ -46,7 +46,7 @@
         <div class="postBody">
           <div class="postGroupingFlexBox">
             <div class="postPropertiesFlexBoxItems">
-              <div class="propertiesBorderBottom postPropertiesItemPadding">
+              <div class="postPropertiesItemPadding">
               {{story.description|slice:":100"}}
               </div>
             </div>
@@ -93,19 +93,20 @@
                   </div>
                 </div>
                 <div class="propertiesBorderBottom postPropertiesItemPadding">
-                  Height FT
+                  Body Type
                   <div class="postPropertiesItemFloatRight">
-                    {{ character.height_ft }}
+                    {{ character.get_body_type_display }}
                   </div>
                 </div>
                 <div class="propertiesBorderBottom postPropertiesItemPadding">
-                  Height CM
+                  Height
                   <div class="postPropertiesItemFloatRight">
-                    {{ character.height_cm }}
+                    {{ character.height_ft }}"
+                    {{ character.height_cm }} cm
                   </div>
                 </div>
                 <div class="postPropertiesItemPadding">
-                  Fight Style
+                  Ability
                   <div class="postPropertiesItemFloatRight">
                     {{ character.get_fighting_style_display }}
                   </div>

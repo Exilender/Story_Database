@@ -10,7 +10,12 @@ class Character(models.Model):
     """Defining the individual characters that may be linked to Stories or Content"""
 
     char_icon = models.ForeignKey(
-        "artwork.Artwork", on_delete=models.PROTECT, related_name="char_icon", blank=True, null=True
+        "artwork.Artwork",
+        on_delete=models.PROTECT,
+        related_name="char_icon",
+        blank=True,
+        null=True,
+        limit_choices_to={"is_default": False},
     )
 
     first_name = models.CharField(max_length=100)
